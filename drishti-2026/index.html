@@ -56,27 +56,27 @@ nav .w{display:flex;justify-content:space-between;align-items:center;height:62px
 .hlg{display:block;height:64px;width:auto;margin:0 0 22px}@media(max-width:560px){.hlg{height:50px}}
 /* theme + six fronts */
 #theme{overflow:hidden}
-.ti{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end}
-.ti h2.big{font-size:clamp(72px,12vw,160px);line-height:.9;margin-top:18px;color:var(--cream)}
-.ti .bar{display:block;width:140px;height:10px;background:var(--red);margin:26px 0 0}
-.ti .ill{display:block;width:300px;max-width:none;height:auto;margin:18px 0 0 calc(-24px - max(0px,(100vw - 1200px)/2))}
-.ti .tt{padding-bottom:70px}.ti .tt p.big{font-size:clamp(24px,2.6vw,34px);line-height:1.3;font-weight:600;letter-spacing:-.02em;margin:0;color:var(--cream)}
-.ti .tt p.sm{margin:22px 0 0;color:#b4cada;font-size:17px;max-width:520px}.ti .tt p.sm .s{color:#ff7b82;font-size:1.15em}
-.fh{margin-top:96px}.fh h2{margin-top:14px}
+.ti{display:grid;grid-template-columns:auto 1fr;gap:64px;align-items:center}
+.ti h2.big{font-size:clamp(60px,8vw,112px);line-height:.9;margin-top:16px;color:var(--cream)}
+.ti .bar{display:block;width:120px;height:8px;background:var(--red);margin:22px 0 26px}
+.ti .ill{display:block;width:220px;max-width:none;height:auto;margin-left:calc(-24px - max(0px,(100vw - 1200px)/2))}
+.ti p.big{font-size:clamp(24px,2.6vw,34px);line-height:1.3;font-weight:600;letter-spacing:-.02em;margin:0;color:var(--cream)}
+.ti p.sm{margin:22px 0 0;color:#b4cada;font-size:17px;max-width:520px}.ti p.sm .s{color:#ff7b82;font-size:1.15em}
+.fh{margin-top:64px}.fh h2{margin-top:14px}
 .fr{display:grid;gap:20px;margin-top:46px;grid-template-columns:repeat(6,minmax(0,1fr))}
-.fc{background:var(--cream);color:var(--navy);border-radius:4px;padding:22px 20px 22px;min-height:250px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
+.fc{background:var(--cream);color:var(--navy);border-radius:4px;padding:20px 20px;min-height:180px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
 .fc .n{position:absolute;top:20px;right:20px;font-size:13px;letter-spacing:.18em;font-weight:700;color:var(--red)}
 .fc svg{width:48px;height:48px;fill:none;stroke:var(--navy);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}.fc svg .r{fill:var(--red);stroke:none}.fc svg .rs{stroke:var(--red)}
 .fc h3{font-size:22px;line-height:1.12;letter-spacing:-.02em}
-.fc:after{content:"";position:absolute;left:50%;top:100%;width:1.5px;height:44px;background:var(--cream)}
-.rail{position:relative;height:20px;margin-top:44px;background:var(--red)}
+.fc:after{content:"";position:absolute;left:50%;top:100%;width:1.5px;height:32px;background:var(--cream)}
+.rail{position:relative;height:20px;margin-top:32px;background:var(--red)}
 .rail:before{content:"";position:absolute;left:0;right:0;top:9px;height:2px;background:repeating-linear-gradient(90deg,var(--cream) 0 14px,transparent 14px 26px)}
 .rail.fr6{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:20px;background:none}
 .rail.fr6:after{content:"";position:absolute;inset:0 -50vw;background:var(--red);z-index:-1}
 .rail.fr6{z-index:0}.rail.fr6 i{position:relative;justify-self:center;width:24px;height:24px;margin-top:-2px;border-radius:50%;background:var(--cream);border:4px solid var(--navy);z-index:1}
 @media(max-width:1100px){.fr{grid-template-columns:repeat(3,minmax(0,1fr))}.fc:after,.rail.fr6{display:none}}
-@media(max-width:860px){.ti{grid-template-columns:1fr;gap:0}.ti .tt{padding:28px 0 0}.ti .ill{width:230px}}
-@media(max-width:620px){.fr{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.fc{min-height:180px;padding:18px 16px}.fc h3{font-size:19px}.fc svg{width:40px;height:40px}}
+@media(max-width:860px){.ti{gap:32px}.ti .ill{width:170px}}@media(max-width:600px){.ti{grid-template-columns:1fr}.ti .ill{display:none}}
+@media(max-width:620px){.fr{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.fc{min-height:132px;padding:16px}.fc h3{font-size:19px}.fc svg{width:40px;height:40px}}
 /* three pillars */
 .pd{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:34px;align-items:end;max-width:960px;margin-top:70px}
 .pl{position:relative;padding:28px 26px;color:var(--cream)}
@@ -187,8 +187,7 @@ footer{background:#08222f;color:#b4cada;padding:44px 0;font-size:14px}footer .w{
 <div class="mq"><div id="mq"></div></div>
 
 <section id="theme" class="d"><div class="w">
-<div class="ti"><div><div class="ey rv">The theme for Drishti 2026</div><h2 class="big rv">India<br>2047</h2><span class="bar rv"></span><img class="ill" src="../images/india-2047-illustration.png" alt="Illustration of India's growth path: a rising arrow, clean energy and venture investment" width="300" height="624" loading="lazy"></div>
-<div class="tt rv"><p class="big">India's path toward 2047 demands leadership across critical fronts.</p><p class="sm"><span class="s">By 2047, India turns one hundred.</span> The leaders in this room will make the decisive moves on capital, technology, talent and trade that get it there.</p></div></div>
+<div class="ti"><img class="ill" src="../images/india-2047-illustration.png" alt="Illustration of India's growth path: a rising arrow, clean energy and venture investment" width="300" height="624" loading="lazy"><div><div class="ey rv">The theme for Drishti 2026</div><h2 class="big rv">India 2047</h2><span class="bar rv"></span><div class="rv"><p class="big">India's path toward 2047 demands leadership across critical fronts.</p><p class="sm"><span class="s">By 2047, India turns one hundred.</span> The leaders in this room will make the decisive moves on capital, technology, talent and trade that get it there.</p></div></div></div>
 <div class="fh"><div class="ey rv">Where leadership is needed</div><h2 class="rv">Six critical <em class="s">fronts.</em></h2></div>
 <div class="fr"><div class="fc rv"><span class="n">01</span><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 18 24 8l18 10z"/><path d="M11 23v13M19 23v13M29 23v13M37 23v13M6 40h36"/></svg><h3>Public<br>Policy</h3></div><div class="fc rv"><span class="n">02</span><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="13" y="13" width="22" height="22" rx="2"/><rect class="r" x="19" y="19" width="10" height="10"/><path d="M19 8v5M29 8v5M19 35v5M29 35v5M8 19h5M8 29h5M35 19h5M35 29h5"/></svg><h3>AI</h3></div><div class="fc rv"><span class="n">03</span><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="10"/><path d="M24 6v6M24 36v6M6 24h6M36 24h6M11.3 11.3l4.2 4.2M32.5 32.5l4.2 4.2M11.3 36.7l4.2-4.2M32.5 15.5l4.2-4.2"/><circle class="r" cx="24" cy="24" r="4"/></svg><h3>Manufacturing</h3></div><div class="fc rv"><span class="n">04</span><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="16"/><ellipse cx="24" cy="24" rx="7" ry="16"/><path d="M8 24h32M11 16h26M11 32h26"/><circle class="r" cx="37" cy="12" r="4"/></svg><h3>International<br>Trade</h3></div><div class="fc rv"><span class="n">05</span><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M19 7h10M20 7v13L9 39a2 2 0 0 0 2 3h26a2 2 0 0 0 2-3L28 20V7"/><path class="r" d="M13.5 32h21l3.3 6.5a1 1 0 0 1-.9 1.5H11.1a1 1 0 0 1-.9-1.5z"/></svg><h3>R&amp;D</h3></div><div class="fc rv"><span class="n">06</span><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 40C8 24 18 9 40 8c1 20-12 32-30 32z"/><path class="rs" d="M10 40 32 16"/></svg><h3>Sustainability</h3></div></div>
 <div class="rail fr6" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
