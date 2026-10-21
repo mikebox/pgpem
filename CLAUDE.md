@@ -37,4 +37,5 @@ Keep these tags near the top of the file. WhatsApp and other preview crawlers re
 ## Branding
 
 - Palette: cream `#fff1d6`, red `#c11720`, navy `#0c3249`, sky `#679cbc`. Fonts: Inter, with Instrument Serif italic for accents.
+- When naming the audience, always list working professionals before MBA students.
 - The IIMB PGPEM logo is `images/iimb-pgpem.png`. On navy backgrounds, place it on a cream panel (the `.ilg` class).
