@@ -117,7 +117,7 @@ const EXTRA=[
  "I'll pay for things digitally or ask for a bill, so business stays on the books."
 ];
 const ranks=[[10,"Visionary of 2047","You understand what it really takes."],[8,"Nation Builder","Strong grasp of how nations develop."],[5,"Rising Citizen","Good start. A few milestones to revisit."],[0,"Just Starting the Journey","The facts will come. Your pledges already count."]];
-const URL_GAME="https://pgpem.in/drishti-2026/vision-game.html",TAGS="#Drishti2026 #India2047 #IIMBangalore";
+const URL_SHARE="https://pgpem.in/drishti-2026",TAGS="#Drishti2026 #India2047 #IIMBangalore";
 let name="",order,i,score,streak,missed,pledges,cardBlob=null;
 const $=id=>document.getElementById(id),card=$('card'),segK=$('segK'),segP=$('segP'),yr=$('yr');
 const esc=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -227,8 +227,9 @@ async function drawCard(){
   return new Promise((res,rej)=>{try{cv.toBlob(b=>b?res({blob:b,url:URL.createObjectURL(b)}):rej(new Error('empty')),'image/png')}catch(e){rej(e)}});
 }
 function caption(short){
-  if(short)return `I just made ${pledges.length} pledges for a developed India in the 2047 Vision Game. India gets to 2047 together. Play, pledge, and join us at #Drishti2026, IIM Bangalore, 13–14 Nov.`;
-  return `I just made ${pledges.length} pledges for a developed India by 2047 in the 2047 Vision Game.\n\nMy pledges:\n${pledges.map(p=>'• '+p.replace(/^I'll /,'I will ')).join('\n')}\n\nIndia gets to 2047 together, one pledge at a time. Play the game, add yours, and join the conversation at Drishti 2026, the business and cultural fest of PGPEM, IIM Bangalore, on 13–14 November.\n\n${URL_GAME}\n\n${TAGS}`;
+  const hook='In 2047, independent India turns 100. Can we get there as a developed nation?';
+  if(short)return `${hook} I played the 2047 Vision Game and made my pledges. Add yours and join us at #Drishti2026, IIM Bangalore, 13–14 Nov.`;
+  return `${hook}\n\nI played the 2047 Vision Game and made my pledges:\n${pledges.map(p=>'• '+p.replace(/^I'll /,'I will ')).join('\n')}\n\nIndia gets to 2047 together, one pledge at a time. Play the game, add yours, and join the conversation at Drishti 2026, the business and cultural fest of PGPEM, IIM Bangalore, on 13–14 November.\n\n${URL_SHARE}\n\n${TAGS}`;
 }
 const fileName=()=>`drishti-2047-vision-${first().toLowerCase().replace(/[^a-z0-9]+/g,'')||'card'}.png`;
 function download(){const a=document.createElement('a');a.href=URL.createObjectURL(cardBlob);a.download=fileName();document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000)}
@@ -263,7 +264,7 @@ async function result(){
   $('cc').onclick=()=>copy(caption()).then(ok=>toast(ok?'Caption copied.':'Copy was blocked by the browser.'));
   $('again').onclick=()=>{track('vision_game_replay');start();window.scrollTo({top:0,behavior:'smooth'})};
   card.querySelectorAll('[data-s]').forEach(b=>b.onclick=async()=>{const s=b.dataset.s;track('share',{method:s,content_type:'vision_card'});
-    if(s==='x'){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(caption(true))+'&url='+encodeURIComponent(URL_GAME)+'&hashtags=India2047,IIMBangalore','_blank','noopener');return}
+    if(s==='x'){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(caption(true))+'&url='+encodeURIComponent(URL_SHARE)+'&hashtags=India2047,IIMBangalore','_blank','noopener');return}
     if(s==='whatsapp'){window.open('https://wa.me/?text='+encodeURIComponent(caption()),'_blank','noopener');return}
     if(s==='linkedin'){const ok=await copy(caption());window.open('https://www.linkedin.com/feed/?shareActive=true&text='+encodeURIComponent(caption()),'_blank','noopener');
       toast(ok?'Caption copied. Add your downloaded card to the post for more reach.':'Add your downloaded card to the post for more reach.');return}
