@@ -76,15 +76,49 @@ nav .w{display:flex;justify-content:space-between;align-items:center;height:62px
 @media(max-width:860px){.ti{gap:32px}.ti .ill{width:170px}}@media(max-width:600px){.ti{grid-template-columns:1fr}.ti .ill{display:none}}
 @media(max-width:620px){.fr{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.fc{padding:16px;gap:14px}.fc h3{font-size:17px}.fc svg{width:40px;height:40px}}
 /* three pillars */
-.pd{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:34px;align-items:end;max-width:960px;margin:70px auto 0}
-.pl{position:relative;padding:28px 26px;color:var(--cream)}
-.pl:before{content:"";position:absolute;left:-10px;right:-10px;top:-18px;height:18px;background:var(--navy)}
+.pd-in{text-align:center;max-width:560px;margin:18px auto 0;color:var(--mu);font-size:17px}
+.pd{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:34px;align-items:end;max-width:960px;margin:64px auto 0;padding-top:28px}
+.pl{position:relative;display:flex;flex-direction:column;justify-content:space-between;width:100%;text-align:left;font:inherit;color:var(--cream);border:0;border-radius:0;padding:28px 26px 24px;cursor:pointer;transition:transform .45s cubic-bezier(.2,.7,.2,1),filter .35s,opacity .35s,box-shadow .45s;-webkit-tap-highlight-color:transparent}
+.pl:before{content:"";position:absolute;left:-10px;right:-10px;top:-18px;height:18px;background:var(--navy);transition:transform .45s cubic-bezier(.2,.7,.2,1)}
 .pl small{display:block;font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:700}
-.pl h3{font-size:clamp(24px,2.6vw,32px);margin-top:8px;letter-spacing:-.02em}
+.pl .h{display:block;font-size:clamp(24px,2.6vw,32px);font-weight:700;line-height:1.05;margin-top:8px;letter-spacing:-.02em}
+.pl .pl-tg{display:block;font:italic 400 clamp(19px,1.9vw,24px)/1.15 'Instrument Serif',Georgia,serif}
+.pl .xp{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s}
+.pl .xp i{font-style:normal;display:inline-block}
+.pl:hover .xp,.pl:focus-visible .xp,.pl[aria-selected=true] .xp{opacity:.95;transform:none}
+.pl[aria-selected=true] .xp i{animation:nudge 1.6s ease-in-out infinite}
+@keyframes nudge{50%{transform:translateY(4px)}}
+.pl:hover,.pl[aria-selected=true]{transform:translateY(-12px);box-shadow:0 26px 40px -26px rgba(12,50,73,.75)}
+.pl:hover:before,.pl[aria-selected=true]:before{transform:translateY(-4px)}
+.pd .pl[aria-selected=false]:not(:hover){opacity:.8}
+.pl:focus-visible{outline:3px solid var(--navy);outline-offset:6px}
 .pl.q1{background:var(--red);height:320px}.pl.q2{background:var(--sky);color:var(--navy);height:400px}.pl.q3{background:var(--navy);height:480px}
-.pl.q3:before{background:var(--red)}.pl.q3 small{color:#ff7b82}
+.pl.q3:before{background:var(--red)}.pl.q3 small{color:#ff7b82}.pl.q3:focus-visible{outline-color:var(--red)}
 .pd+.rail{margin-top:0}
-@media(max-width:640px){.pd{grid-template-columns:1fr;gap:30px;align-items:start}.pl{height:auto!important;padding:22px;justify-self:center;width:100%}.pl.q1{width:80%}.pl.q2{width:90%}}
+.pd.js:not(.up) .pl{clip-path:inset(100% -20px 0 -20px)}
+.pd.up .pl{animation:rise 1s cubic-bezier(.2,.7,.2,1) backwards}.pd.up .q2{animation-delay:.16s}.pd.up .q3{animation-delay:.32s}
+.pd.up .pl>span{animation:fadeup .6s ease-out backwards}.pd.up .q1>span{animation-delay:.55s}.pd.up .q2>span{animation-delay:.71s}.pd.up .q3>span{animation-delay:.87s}
+@keyframes rise{from{clip-path:inset(100% -20px 0 -20px)}to{clip-path:inset(-40px -20px 0 -20px)}}
+@keyframes fadeup{from{opacity:0;transform:translateY(10px)}}
+.pp{position:relative;max-width:960px;margin:34px auto 0;display:grid;grid-template-columns:auto 1fr;gap:6px 40px;padding:38px 42px 40px;background:var(--red);color:var(--cream);transition:background .45s}
+.pp:before{content:"";position:absolute;top:-13px;left:var(--x);width:28px;height:14px;margin-left:-14px;background:inherit;clip-path:polygon(50% 0,100% 100%,0 100%);transition:left .45s cubic-bezier(.2,.7,.2,1)}
+.pp[data-p="1"]{background:var(--sky);color:var(--navy)}.pp[data-p="2"]{background:var(--navy)}
+.pp-n{font:italic 400 clamp(64px,8vw,104px)/.85 'Instrument Serif',Georgia,serif;opacity:.9}
+.pp-b{transition:opacity .22s,transform .22s}.pp.sw .pp-b,.pp.sw .pp-n{opacity:0;transform:translateY(8px)}.pp-n{transition:opacity .22s,transform .22s}
+.pp small{display:block;font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;opacity:.85}
+.pp h3{font-size:clamp(26px,3vw,38px);margin-top:8px;letter-spacing:-.025em}
+.pp p{margin:12px 0 0;font-size:17px;line-height:1.55;max-width:640px;opacity:.92}
+.pp-g{display:grid;grid-template-columns:.8fr 1.2fr;gap:28px;margin-top:28px;padding-top:24px;border-top:1px solid currentColor;border-color:rgba(255,241,214,.35)}
+.pp[data-p="1"] .pp-g{border-color:rgba(12,50,73,.3)}
+.pp-g>div>span{display:block;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;opacity:.8;margin-bottom:12px}
+.pp-f{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}.pp-f li{border:1.5px solid currentColor;border-radius:999px;padding:5px 14px;font-size:14px;font-weight:600}
+.pp-s{list-style:none;padding:0;margin:0}.pp-s li+li{margin-top:10px}
+.pp-s a{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-bottom:8px;border-bottom:1px solid rgba(255,241,214,.3);transition:padding .25s}
+.pp[data-p="1"] .pp-s a{border-color:rgba(12,50,73,.25)}
+.pp-s a:hover{padding-left:6px}.pp-s b{font-size:15.5px;font-weight:600;line-height:1.35}.pp-s em{font-style:normal;font-size:12.5px;white-space:nowrap;opacity:.8}
+@media(max-width:760px){.pp{grid-template-columns:1fr;padding:30px 26px}.pp-g{grid-template-columns:1fr;gap:22px}.pp-n{font-size:56px}}
+@media(max-width:640px){.pd{grid-template-columns:1fr;gap:30px;align-items:start;padding-top:18px}.pl{height:auto!important;padding:22px;justify-self:center;width:100%;min-height:0}.pl.q1{width:80%}.pl.q2{width:90%}.pl .pb{margin-top:16px}.pl:hover,.pl[aria-selected=true]{transform:translateX(0) scale(1.02)}.pp:before{display:none}.pp{margin-top:26px}}
+@media(prefers-reduced-motion:reduce){.pd.js:not(.up) .pl{clip-path:none}.pd.up .pl,.pd.up .pl>span,.pl[aria-selected=true] .xp i{animation:none}.pl,.pp,.pp:before,.pp-b,.pp-n{transition:none}}
 .mq{overflow:hidden;background:var(--red);color:var(--cream);white-space:nowrap}.mq div{display:inline-block;padding:16px 0;animation:m 40s linear infinite;font:italic 26px 'Instrument Serif',serif}.mq i{color:var(--cream);opacity:.7;padding:0 26px;font-style:normal}
 @keyframes m{to{transform:translateX(-50%)}}
 section{padding:100px 0}.l{background:var(--paper)}.d{background:var(--navy);color:var(--cream)}
@@ -207,8 +241,11 @@ footer{background:#08222f;color:#b4cada;padding:44px 0;font-size:14px}footer .w{
 <div class="te"><b style="color:#fff">2026</b><div><h3>India 2047: Decisive Moves for the Next Decades</h3><p>The next chapter. Registrations are opening on <a class="ul" data-reg href="#" target="_blank" rel="noopener">Unstop</a>.</p></div></div></div></div></section>
 
 <section id="pillars" class="l"><div class="w"><div class="ey rv" style="justify-content:center">Guided by Drishti's core pillars</div><h2 class="rv" style="margin-top:14px;text-align:center">Three <em class="s">pillars.</em></h2>
-<div class="pd"><div class="pl q1 rv"><small>Pillar 01</small><h3>Prosperity</h3></div><div class="pl q2 rv"><small>Pillar 02</small><h3>Inclusion</h3></div><div class="pl q3 rv"><small>Pillar 03</small><h3>Sustainability</h3></div></div>
-<div class="rail" aria-hidden="true"></div></div></section>
+<p class="pd-in rv">Every conversation at Drishti 2026 builds on one of three ideas. Select a pillar to see where it shows up on the agenda.</p>
+<div class="pd" role="tablist" aria-label="Drishti's core pillars"><button class="pl q1" type="button" role="tab" id="pt0" aria-selected="true" aria-controls="pp" tabindex="0"><span class="pt"><small>Pillar 01</small><span class="h">Prosperity</span></span><span class="pb"><span class="pl-tg">Growth that compounds.</span><span class="xp" aria-hidden="true">Explore <i>↓</i></span></span></button><button class="pl q2" type="button" role="tab" id="pt1" aria-selected="false" aria-controls="pp" tabindex="-1"><span class="pt"><small>Pillar 02</small><span class="h">Inclusion</span></span><span class="pb"><span class="pl-tg">Growth that reaches everyone.</span><span class="xp" aria-hidden="true">Explore <i>↓</i></span></span></button><button class="pl q3" type="button" role="tab" id="pt2" aria-selected="false" aria-controls="pp" tabindex="-1"><span class="pt"><small>Pillar 03</small><span class="h">Sustainability</span></span><span class="pb"><span class="pl-tg">Growth that lasts.</span><span class="xp" aria-hidden="true">Explore <i>↓</i></span></span></button></div>
+<div class="rail pd-rail" aria-hidden="true"></div>
+<div class="pp" id="pp" role="tabpanel" aria-labelledby="pt0" data-p="0" style="--x:16.667%"><div class="pp-n" aria-hidden="true">01</div><div class="pp-b"><small>Pillar 01 · Prosperity</small><h3>Growth that compounds.</h3><p>Building the industrial depth, trade reach and innovation capacity that can carry India to high-income status by 2047.</p><div class="pp-g"><div><span>Critical fronts</span><ul class="pp-f"><li>Manufacturing</li><li>International Trade</li><li>R&amp;D</li></ul></div><div><span>On the agenda</span><ul class="pp-s"><li><a href="#agenda"><b>Keynote Address: India 2047</b><em>Day 1 · 17:30</em></a></li><li><a href="boardroom-brawlz.html"><b>Boardroom Brawlz</b><em>Day 2 · 11:15</em></a></li></ul></div></div></div></div>
+</div></section>
 
 <section id="theme" class="d"><div class="w">
 <div class="ti"><img class="ill" src="../images/india-2047-illustration.png" alt="Illustration of India's growth path: a rising arrow, clean energy and venture investment" width="300" height="624" loading="lazy"><div><div class="ey rv">The theme for Drishti 2026</div><h2 class="big rv">India 2047</h2><span class="bar rv"></span><p class="big rv">India's path toward 2047 demands leadership across <em class="s">six critical fronts.</em></p></div></div>
@@ -283,6 +320,16 @@ var th="";AG.forEach(function(d,i){th+='<button role="tab" data-i="'+i+'">'+d.d+
 document.getElementById("tabs").innerHTML=th;document.querySelectorAll("#tabs button").forEach(function(b){b.onclick=function(){drawAg(+b.dataset.i)}});drawAg(0);
 var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}})},{threshold:.12});
 document.querySelectorAll(".rv").forEach(function(el,i){el.style.transitionDelay=(i%4)*70+"ms";io.observe(el)});
+
+(function(){var P=[{"n": "01", "k": "Prosperity", "t": "Growth that compounds.", "d": "Building the industrial depth, trade reach and innovation capacity that can carry India to high-income status by 2047.", "f": ["Manufacturing", "International Trade", "R&D"], "s": [["Keynote Address: India 2047", "Day 1 · 17:30", "#agenda"], ["Boardroom Brawlz", "Day 2 · 11:15", "boardroom-brawlz.html"]]}, {"n": "02", "k": "Inclusion", "t": "Growth that reaches everyone.", "d": "Making sure policy, technology and opportunity widen who takes part in India's rise, and who gets to lead it.", "f": ["Public Policy", "AI"], "s": [["The Human Imperative: Purpose, Creativity and Agency in the Age of AI", "Day 1 · 16:20", "panel-human-imperative.html"], ["AI Sovereignty: Can India Own Its AI Future?", "Day 2 · 16:20", "speaker-ai-sovereignty.html"]]}, {"n": "03", "k": "Sustainability", "t": "Growth that lasts.", "d": "Decarbonising and building resilience without slowing the economy down, on the road to net zero by 2070.", "f": ["Sustainability", "R&D"], "s": [["Power Play 2047: Decarbonising Without Slowing Down", "Day 2 · 15:00", "speaker-power-play-2047.html"], ["Net-Zero Republic: India's Blueprint for Sustainable Prosperity", "Day 2 · 17:30", "panel-net-zero-republic.html"]]}],pd=document.querySelector(".pd"),pp=document.getElementById("pp");if(!pd||!pp)return;
+var tabs=[].slice.call(pd.querySelectorAll(".pl")),cur=0,e=function(t){return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;")};
+function body(x){return '<small>Pillar '+x.n+' · '+x.k+'</small><h3>'+e(x.t)+'</h3><p>'+e(x.d)+'</p><div class="pp-g"><div><span>Critical fronts</span><ul class="pp-f">'+x.f.map(function(v){return '<li>'+e(v)+'</li>'}).join('')+'</ul></div><div><span>On the agenda</span><ul class="pp-s">'+x.s.map(function(v){return '<li><a href="'+v[2]+'"><b>'+e(v[0])+'</b><em>'+v[1]+'</em></a></li>'}).join('')+'</ul></div></div>'}
+function sel(i,focus){if(i===cur){if(focus)tabs[i].focus();return}cur=i;tabs.forEach(function(t,j){t.setAttribute("aria-selected",j===i);t.tabIndex=j===i?0:-1});if(focus)tabs[i].focus();
+pp.setAttribute("aria-labelledby","pt"+i);pp.style.setProperty("--x",(100/6*(2*i+1)).toFixed(3)+"%");pp.classList.add("sw");
+setTimeout(function(){pp.dataset.p=i;pp.querySelector(".pp-n").textContent=P[i].n;pp.querySelector(".pp-b").innerHTML=body(P[i]);pp.classList.remove("sw")},matchMedia("(prefers-reduced-motion: reduce)").matches?0:220)}
+tabs.forEach(function(t,i){t.addEventListener("click",function(){sel(i);var r=pp.getBoundingClientRect();if(r.top>innerHeight-120)pp.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"nearest"})});t.addEventListener("keydown",function(ev){var k=ev.key,n={ArrowRight:i+1,ArrowDown:i+1,ArrowLeft:i-1,ArrowUp:i-1,Home:0,End:2}[k];if(n===undefined)return;ev.preventDefault();sel((n+3)%3,true)})});
+pd.classList.add("js");if(!("IntersectionObserver" in window)){pd.classList.add("up");return}
+var o=new IntersectionObserver(function(en){if(en[0].isIntersecting){pd.classList.add("up");o.disconnect()}},{threshold:.35});o.observe(pd)})();
 </script></body></html>
 
 </body></html>
