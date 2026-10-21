@@ -38,4 +38,4 @@ Keep these tags near the top of the file. WhatsApp and other preview crawlers re
 
 - Palette: cream `#fff1d6`, red `#c11720`, navy `#0c3249`, sky `#679cbc`. Fonts: Inter, with Instrument Serif italic for accents.
 - When naming the audience, always list working professionals before MBA students.
-- The IIMB PGPEM logo is `images/iimb-pgpem.png`. Everywhere except the Drishti hero banner (where it sits directly on cream), place it on a white panel (the `.ilg` class), including in the vision game share card.
+- The IIMB PGPEM logo is `images/iimb-pgpem.png`. Always place it on a white panel: the `.ilg` class in footers and headers, `.hlg` in the Drishti hero, and a white box in the vision game share card.
