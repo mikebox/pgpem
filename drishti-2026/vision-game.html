@@ -155,7 +155,7 @@ function pick(n){
   if(ok){score++;streak++}else{streak=0;missed.push(it)}
   road();
   const last=i===order.length-1;
-  $('after').innerHTML=`<div class="fb ${ok?'':'no'}"><strong>${ok?`Correct, ${esc(first())}. You moved 10 years ahead.`:'Not quite. You can win these years back with a pledge at the end.'}</strong>${it.e}</div>
+  $('after').innerHTML=`<div class="fb ${ok?'':'no'}"><strong>${ok?`Correct, ${esc(first())}. That moves India 10 years closer.`:'Not quite. A pledge at the end wins these years back for India.'}</strong>${it.e}</div>
   <div class="grow"><button class="btn nv" id="next">${last?'See my result →':'Next question →'}</button>${streak>=3?`<span class="note">${streak} in a row</span>`:''}</div>`;
   $('next').onclick=()=>{if(last)end();else{i++;show();card.scrollIntoView({block:'nearest',behavior:'smooth'})}};
   $('next').focus({preventScroll:true});
@@ -225,8 +225,8 @@ async function drawCard(){
 }
 function caption(short){
   const yrs=years()>=100?'reached 2047':'reached '+(1947+years());
-  if(short)return `I scored ${score}/10 in the 2047 Vision Game and ${yrs}. What’s your vision for India at 100? Play, then join us at #Drishti2026, IIM Bangalore, 13–14 Nov.`;
-  return `I scored ${score}/10 in the 2047 Vision Game and ${yrs} on the road to a developed India.\n\nMy pledges:\n${pledges.map(p=>'• '+p.replace(/^I'll /,'I will ')).join('\n')}\n\nWhat’s your vision for India at 100? Play the game and join the conversation at Drishti 2026, the business and cultural fest of PGPEM, IIM Bangalore, on 13–14 November.\n\n${URL_GAME}\n\n${TAGS}`;
+  if(short)return `I scored ${score}/10 in the 2047 Vision Game and ${yrs}. India gets to 2047 together. Play, pledge, and join us at #Drishti2026, IIM Bangalore, 13–14 Nov.`;
+  return `I scored ${score}/10 in the 2047 Vision Game and ${yrs} on the road to a developed India.\n\nMy pledges:\n${pledges.map(p=>'• '+p.replace(/^I'll /,'I will ')).join('\n')}\n\nIndia gets to 2047 together, one pledge at a time. Play the game, add yours, and join the conversation at Drishti 2026, the business and cultural fest of PGPEM, IIM Bangalore, on 13–14 November.\n\n${URL_GAME}\n\n${TAGS}`;
 }
 const fileName=()=>`drishti-2047-vision-${first().toLowerCase().replace(/[^a-z0-9]+/g,'')||'card'}.png`;
 function download(){const a=document.createElement('a');a.href=URL.createObjectURL(cardBlob);a.download=fileName();document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000)}
