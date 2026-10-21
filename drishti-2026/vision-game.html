@@ -168,14 +168,17 @@ function end(){
   <p class="rank">${r[1]}</p><p style="margin:4px 0 0;color:var(--mu)">${r[2]}</p></div>
   ${missed.length?`<div><strong>Worth revisiting</strong><ul class="rev">${missed.map(m=>`<li>${m.q} <b>${m.o[m.a]}</b></li>`).join('')}</ul></div>`:''}
   <div id="gz"></div>`;
-  const lost=shuffle(missed.map(m=>m.p)).slice(0,5),pool=lost.concat(shuffle(EXTRA.filter(x=>!lost.includes(x))).slice(0,5-lost.length)),need=3,z=$('gz');
+  // pledges close the gap to 2047 (10 years each, at least 3), always with 2 spare to choose from
+  const need=Math.max(3,10-score),lost=missed.map(m=>m.p),head=t=>t.split(' ').slice(0,6).join(' '),
+    extra=shuffle(EXTRA.filter(x=>!lost.some(l=>head(l)===head(x)))).slice(0,Math.max(0,need+2-lost.length)),
+    pool=shuffle(lost.concat(extra)).slice(0,need+2),z=$('gz');
   z.innerHTML=`<div class="act"><h3>${missed.length?`You’re at ${1947+years()}. Knowledge got you here. Action takes you further.`:'A perfect 10. You reached 2047 on knowledge alone. Now make it real.'}</h3>
-   <p>Pick 3 pledges from these 5.${missed.length?' Each pledge is worth 10 years.':' They go on your card.'}</p>
+   <p>Pick ${need} pledges from these ${pool.length}.${missed.length?` Each pledge is worth 10 years${need>3?', so '+need+' get India to 2047':''}.`:' They go on your card.'}</p>
    <div class="pls">${pool.map((p,n)=>`<label class="pl"><input type="checkbox" value="${n}"><span>${p}</span></label>`).join('')}</div>
-   <div class="grow"><button class="btn" id="lock" disabled>Lock in my pledges</button><span class="note" id="cnt">0 of 3 picked</span></div></div>`;
+   <div class="grow"><button class="btn" id="lock" disabled>Lock in my pledges</button><span class="note" id="cnt">0 of ${need} picked</span></div></div>`;
   const boxes=[...z.querySelectorAll('input')],lock=$('lock'),cnt=$('cnt');
   const upd=()=>{const c=boxes.filter(b=>b.checked).length;boxes.forEach(b=>b.disabled=!b.checked&&c>=need);
-    cnt.textContent=`${c} of 3 picked`;lock.disabled=c<need;
+    cnt.textContent=`${c} of ${need} picked`;lock.disabled=c<need;
     const k=score*10,t=Math.min(100,k+c*10);segP.style.width=(t-k)+'%';yr.textContent=t>=100?'2047 reached':'Year '+(1947+t)};
   boxes.forEach(b=>b.onchange=upd);
   lock.onclick=()=>{boxes.filter(b=>b.checked).forEach(b=>pledges.push(pool[+b.value]));road();result()};
@@ -203,8 +206,10 @@ async function drawCard(){
   let fs=48,lines;do{c.font=`700 ${fs}px Inter`;lines=[[]];let lw=0;const sp=c.measureText(' ').width;
     words.forEach(w=>{const ww=c.measureText(w[0]).width;if(lw&&lw+sp+ww>W-120){lines.push([]);lw=0}lines[lines.length-1].push(w);lw+=(lw?sp:0)+ww})}while(lines.length>3&&(fs-=4)>=36);
   const LHh=Math.round(fs*1.2),hy=196,NB=hy+(lines.length-1)*LHh+52;
-  c.font='600 30px Inter';const PL=pledges.map(p=>wrap(c,p.replace(/^I'll /,'I will '),W-200)),GAP=24,LH=40;
-  const plH=PL.reduce((t,l)=>t+l.length*LH,0)+GAP*(PL.length-1),CB=NB+208+plH+52,H=CB+168;
+  // up to 10 pledges: shrink their type until the card fits the 4:5 limit (1350px tall)
+  let pf=30,PL,GAP,LH,plH,CB,H;do{LH=Math.round(pf*1.33);GAP=Math.round(pf*.8);c.font=`600 ${pf}px Inter`;
+    PL=pledges.map(p=>wrap(c,p.replace(/^I'll /,'I will '),W-200));plH=PL.reduce((t,l)=>t+l.length*LH,0)+GAP*(PL.length-1);
+    CB=NB+208+plH+52;H=CB+168}while(H>1350&&(pf-=2)>=20);
   cv.height=H;c=cv.getContext('2d');c.textBaseline='alphabetic';
   c.fillStyle=CREAM;c.fillRect(0,0,W,H);c.fillStyle=NAVY;c.fillRect(0,0,W,NB);strip(c,0,22);
   if(iimb){rr(c,W-232,50,172,74,8);c.fillStyle='#fff';c.fill();c.drawImage(iimb,W-218,59,144,144*265/720)}
@@ -213,8 +218,8 @@ async function drawCard(){
   lines.forEach((ln,k)=>{let x=60;ln.forEach(w=>{c.fillStyle=w[1];c.fillText(w[0],x,hy+k*LHh);x+=c.measureText(w[0]).width+sp})});
   let y=NB+56;
   c.fillStyle=RED;c.font='700 20px Inter';spaced(c,'MY PLEDGES FOR INDIA 2047',60,y,5);c.fillRect(60,y+16,56,4);y+=60+28;
-  PL.forEach((ln,n)=>{c.fillStyle=RED;c.font='italic 400 52px "Instrument Serif"';c.fillText('0'+(n+1),60,y+12);
-    c.fillStyle=NAVY;c.font='600 30px Inter';ln.forEach((l,k)=>c.fillText(l,140,y+k*LH));y+=ln.length*LH+GAP});
+  PL.forEach((ln,n)=>{c.fillStyle=RED;c.font=`italic 400 ${Math.round(pf*1.73)}px "Instrument Serif"`;c.fillText(String(n+1).padStart(2,'0'),60,y+Math.round(pf*.4));
+    c.fillStyle=NAVY;c.font=`600 ${pf}px Inter`;ln.forEach((l,k)=>c.fillText(l,140,y+k*LH));y+=ln.length*LH+GAP});
   y+=58-GAP+6;
   c.fillStyle=NAVY;c.font='700 28px Inter';c.fillText('Can we get there by 2047?',60,y);const qw=c.measureText('Can we get there by 2047? ').width;
   c.fillStyle=RED;c.font='italic 400 38px "Instrument Serif"';c.fillText('Yes, together we can.',60+qw,y);
