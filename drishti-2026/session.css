@@ -51,3 +51,4 @@ h2{font-size:clamp(32px,4.8vw,60px)}h2 em{color:var(--red)}.d h2 em{color:#8dbad
 footer{background:#08222f;color:#b4cada;padding:40px 0;font-size:14px}footer .w{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}footer .lg{color:var(--cream)}
 .rv{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s cubic-bezier(.2,.7,.2,1)}.rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+.ilg{display:inline-block;background:var(--cream);padding:10px 14px;border-radius:6px;margin-bottom:16px}.ilg img{display:block;height:48px;width:auto}
