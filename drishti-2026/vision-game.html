@@ -9,11 +9,11 @@
 
   gtag('config', 'G-N02T4JXVV4');
 </script>
-<meta property="og:type" content="website"><meta property="og:site_name" content="PGPEM · IIM Bangalore"><meta property="og:title" content="The 2047 Vision Game · Drishti 2026"><meta property="og:description" content="Ten questions on what it takes for India to become a developed nation by 2047. Test your vision, lock in your pledges and share your card. Then join us at Drishti 2026, IIM Bangalore."><meta property="og:url" content="https://pgpem.in/drishti-2026/vision-game.html"><meta property="og:image" content="https://pgpem.in/images/og-drishti.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The 2047 Vision Game · Drishti 2026"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="The 2047 Vision Game · Drishti 2026"><meta name="twitter:description" content="Ten questions on what it takes for India to become a developed nation by 2047. Test your vision, lock in your pledges and share your card. Then join us at Drishti 2026, IIM Bangalore."><meta name="twitter:image" content="https://pgpem.in/images/og-drishti.jpg">
+<meta property="og:type" content="website"><meta property="og:site_name" content="PGPEM · IIM Bangalore"><meta property="og:title" content="The 2047 Vision Game · Drishti 2026"><meta property="og:description" content="Ten questions on what it takes for India to become a developed nation by 2047. Test what you know, lock in your pledges and share your card. Then join us at Drishti 2026, IIM Bangalore."><meta property="og:url" content="https://pgpem.in/drishti-2026/vision-game.html"><meta property="og:image" content="https://pgpem.in/images/og-drishti.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The 2047 Vision Game · Drishti 2026"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="The 2047 Vision Game · Drishti 2026"><meta name="twitter:description" content="Ten questions on what it takes for India to become a developed nation by 2047. Test what you know, lock in your pledges and share your card. Then join us at Drishti 2026, IIM Bangalore."><meta name="twitter:image" content="https://pgpem.in/images/og-drishti.jpg">
 <link rel="icon" href="../favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png"><link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>The 2047 Vision Game · Drishti 2026</title>
-<meta name="description" content="Ten questions on what it takes for India to become a developed nation by 2047. Test your vision, lock in your pledges and share your card. Then join us at Drishti 2026, IIM Bangalore.">
+<meta name="description" content="Ten questions on what it takes for India to become a developed nation by 2047. Test what you know, lock in your pledges and share your card. Then join us at Drishti 2026, IIM Bangalore.">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="session.css">
 <style>
@@ -23,7 +23,7 @@
 .gw{max-width:760px;margin:0 auto;padding:0 20px;display:flex;flex-direction:column;gap:22px}
 .gh{display:flex;gap:22px;align-items:center}.gh img{width:84px;height:auto;flex:none}
 .gh h1{font-size:clamp(36px,6vw,64px);margin-top:12px}.gh h1 em{color:var(--red)}
-.hi{font:italic 400 clamp(26px,3.4vw,36px)/1.1 'Instrument Serif',Georgia,serif;color:var(--red)}
+.hi{margin:0;font-size:17px;line-height:1.5;color:#24475d}.hi b{font:italic 400 1.5em/1 'Instrument Serif',Georgia,serif;color:var(--red)}
 .road{display:flex;flex-direction:column;gap:8px}
 .track{height:12px;border-radius:6px;background:var(--ln);overflow:hidden;display:flex}
 .seg{height:100%;width:0;transition:width .5s cubic-bezier(.2,.7,.2,1)}.seg.k{background:var(--navy)}.seg.p{background:var(--red)}
@@ -77,8 +77,8 @@ input.nm:focus{outline:3px solid var(--sky);outline-offset:1px}
 <a class="back" href="index.html" style="align-self:flex-start;margin:0">← Back to Drishti 2026</a>
 <header class="gh"><img src="../images/drishti-logo.png" alt="Drishti India 2047 logo" width="362" height="509"><div>
 <div class="ey">Drishti 2026 · The 2047 Vision Game</div>
-<h1 id="ttl">Do you have <em class="s">vision?</em></h1>
-<div class="hi" id="hi" hidden></div></div></header>
+<h1 id="ttl">Can we get there by <em class="s">2047?</em></h1></div></header>
+<p class="hi" id="hi" hidden></p>
 <div class="road" id="road" aria-label="Progress to 2047" hidden>
 <div class="track"><div class="seg k" id="segK"></div><div class="seg p" id="segP"></div></div>
 <div class="years"><span>1947</span><b id="yr">Year 1947</b><span>2047</span></div>
@@ -125,6 +125,7 @@ const years=()=>Math.min(100,score*10+pledges.length*10);
 const track=(ev,p)=>{try{gtag('event',ev,p||{})}catch(e){}};
 function shuffle(a){a=a.slice();for(let j=a.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[a[j],a[k]]=[a[k],a[j]]}return a}
 function road(){const k=score*10,p=Math.min(100-k,pledges.length*10);segK.style.width=k+'%';segP.style.width=p+'%';yr.textContent=years()>=100?'2047 reached':'Year '+(1947+years())}
+function hello(t){$('hi').innerHTML=`Hello, <b>${esc(first())}</b>. ${t}`}
 function toast(t){const el=$('toast');el.textContent=t;el.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove('on'),3800)}
 
 function intro(){
@@ -139,7 +140,7 @@ function intro(){
 }
 function start(){
   order=shuffle(Q);i=0;score=0;streak=0;missed=[];pledges=[];cardBlob=null;
-  $('hi').hidden=false;$('hi').textContent=`Hello, ${first()}. Let’s see your vision for 2047.`;$('road').hidden=false;road();show();
+  $('hi').hidden=false;hello('Every right answer moves India ten years closer to 2047.');$('road').hidden=false;road();show();
 }
 function show(){
   const it=order[i];
@@ -160,7 +161,7 @@ function pick(n){
 }
 function end(){
   const r=ranks.find(x=>score>=x[0]);
-  $('hi').textContent=`Well played, ${first()}.`;
+  hello('Well played. Now turn what you know into action.');
   card.innerHTML=`<div><div class="ey">Vision score</div><div class="big" style="margin-top:12px">${score}/10</div>
   <p class="rank">${r[1]}</p><p style="margin:4px 0 0;color:var(--mu)">${r[2]}</p></div>
   ${missed.length?`<div><strong>Worth revisiting</strong><ul class="rev">${missed.map(m=>`<li>${m.q} <b>${m.o[m.a]}</b></li>`).join('')}</ul></div>`:''}
@@ -233,16 +234,16 @@ const ICON={li:'<path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85
 const svg=k=>`<svg viewBox="0 0 24 24" aria-hidden="true">${ICON[k]}</svg>`;
 async function result(){
   track('vision_game_complete',{score:score});
-  $('hi').textContent=`Hello ${first()}, here’s your 2047 vision card.`;
+  hello('Your card is ready. Share it and bring others on the road to 2047.');
   card.innerHTML=`<div class="res"><div><img class="prev" id="prev" alt="Your 2047 Vision Game card"></div>
   <div style="display:flex;flex-direction:column;gap:16px"><div><div class="ey">Your card is ready</div>
-  <h2 style="font-size:clamp(26px,3.4vw,36px);margin-top:12px">Share your <em class="s" style="color:var(--red)">vision.</em></h2>
+  <h2 style="font-size:clamp(26px,3.4vw,36px);margin-top:12px">Share your <em class="s" style="color:var(--red)">pledges.</em></h2>
   <p style="margin:8px 0 0;color:var(--mu)">Post it, tag a friend, and see who reaches 2047 first.</p></div>
   <div class="sh2"><button class="btn li" data-s="linkedin">${svg('li')}LinkedIn</button><button class="btn x" data-s="x">${svg('x')}X</button>
   <button class="btn ig" data-s="instagram">${svg('ig')}Instagram</button><button class="btn wa" data-s="whatsapp">${svg('wa')}WhatsApp</button></div>
   <div class="grow"><button class="btn nv" id="dl">${svg('dl')}Download image</button><button class="btn gh2" id="cc">Copy caption</button></div>
   <button class="btn gh2" id="again" style="align-self:flex-start">Play again</button></div></div>
-  <div class="prom"><div class="ey">13–14 Nov 2026 · IIM Bangalore</div><h3>Take your vision to <em class="s">Drishti 2026.</em></h3>
+  <div class="prom"><div class="ey">13–14 Nov 2026 · IIM Bangalore</div><h3>Take the conversation to <em class="s">Drishti 2026.</em></h3>
   <p>India 2047: Decisive Moves for the Next Decades. Keynotes, panels, the Boardroom Brawlz case competition and Pro Night, with working professionals and MBA students.</p>
   <div class="grow" style="margin-top:6px"><a class="b" data-reg href="#" target="_blank" rel="noopener">Register on Unstop ↗</a><a class="b g" href="index.html#agenda" style="border-color:var(--cream);color:var(--cream)!important">See the agenda</a></div></div>`;
   document.querySelectorAll('[data-reg]').forEach(a=>a.href="https://unstop.com/college-fests/drishti-2026-hosted-by-pgpem-iim-bangalore-indian-institute-of-management-iim-bangalore-523573");
