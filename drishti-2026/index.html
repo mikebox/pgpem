@@ -81,6 +81,9 @@ nav .w{display:flex;justify-content:space-between;align-items:center;height:62px
 @keyframes lgOpenB{from{clip-path:ellipse(85% 64% at 50% 100%)}}
 @keyframes lgBlinkT{0%,92%,100%{clip-path:ellipse(85% 0 at 50% 0)}95.5%{clip-path:ellipse(85% 64% at 50% 0)}}
 @keyframes lgBlinkB{0%,92%,100%{clip-path:ellipse(85% 0 at 50% 100%)}95.5%{clip-path:ellipse(85% 64% at 50% 100%)}}
+/* WebGL eye (eye3d.js) draws over the eye area; the CSS eye layers above stay as the fallback */
+.lga .l3d{inset:auto;left:-15%;top:-8%;width:130%;height:75%;background:none;pointer-events:none;opacity:0;transition:opacity .5s}
+.lga.gl{transform:none!important}.lga.gl .l3d{opacity:1}.lga.gl .le,.lga.gl .lp,.lga.gl .lk,.lga.gl .lr{visibility:hidden}
 @keyframes lgLash{0%,94.5%,96.5%,100%{opacity:0}95.5%{opacity:1}}
 @keyframes lgPupil{from{transform:scale(.3) rotate(-300deg);opacity:0}30%{opacity:1}}
 @keyframes lgSweep{0%,78%{rotate:0deg}100%{rotate:360deg}}
@@ -380,6 +383,7 @@ col.style.transform="translateY(-12px) rotateX("+(-y*4).toFixed(2)+"deg) rotateY
 col.addEventListener("pointerleave",function(){col.classList.remove("tilt");col.style.transform=""})});
 pd.classList.add("js");if("IntersectionObserver" in window)new IntersectionObserver(function(en){pd.classList.toggle("vis",en[0].isIntersecting)}).observe(pd);else pd.classList.add("vis");if(!("IntersectionObserver" in window)){go();return}
 var o=new IntersectionObserver(function(en){if(en[0].isIntersecting){o.disconnect();go()}},{threshold:.4});o.observe(pd)})();
-</script></body></html>
+</script>
+<script src="eye3d.js" defer></script></body></html>
 
 </body></html>
