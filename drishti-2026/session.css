@@ -22,7 +22,7 @@ nav .w{display:flex;justify-content:space-between;align-items:center;height:62px
 .d .ey,.cta .ey{color:#8dbad6}
 .back{display:inline-block;font-size:14px;font-weight:600;margin-bottom:22px;color:var(--navy);border-bottom:1.5px solid currentColor}.back:hover{color:var(--red)}
 .sh{background:var(--cream);padding:46px 0 84px}
-.sh .g{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center}@media(max-width:900px){.sh .g{grid-template-columns:1fr;gap:34px}}
+.sh .w>.g{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center}@media(max-width:900px){.sh .w>.g{grid-template-columns:1fr;gap:34px}}
 .sh h1{font-size:clamp(40px,6.4vw,92px);margin:18px 0 0}
 .sh .sub{font:italic 400 clamp(26px,3.6vw,48px)/1.12 'Instrument Serif',Georgia,serif;color:var(--red);margin-top:14px}
 .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}.chips span{border:1.5px solid var(--navy);border-radius:4px;padding:6px 12px;font-size:12.5px;font-weight:600;background:rgba(255,255,255,.35)}.chips span.rd{background:var(--navy);color:var(--cream)}
