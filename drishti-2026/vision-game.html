@@ -37,7 +37,7 @@
 .opts{display:grid;gap:10px}
 .opt{all:unset;box-sizing:border-box;display:flex;gap:14px;align-items:flex-start;padding:13px 16px;border:1.5px solid var(--ln);border-radius:6px;cursor:pointer;background:#fff;color:var(--navy);font-size:16px;transition:border-color .15s,transform .15s}
 .opt:hover:not([disabled]){border-color:var(--navy);transform:translateX(3px)}
-.opt:focus-visible,.pl:focus-within,.btn:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+.opt:focus-visible,.plg:focus-within,.btn:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
 .opt .k{font:italic 22px/1 'Instrument Serif',serif;color:var(--red);min-width:1em;padding-top:1px}
 .opt[disabled]{cursor:default}.opt.right{border-color:var(--navy);background:#dfecf4}.opt.wrong{border-color:var(--red);background:#fbe1df}
 .fb{border-left:3px solid var(--navy);padding:4px 0 4px 16px;color:#24475d}.fb.no{border-color:var(--red)}.fb strong{display:block;color:var(--navy)}
@@ -50,10 +50,10 @@
 .btn.gh2{background:none;color:var(--navy);border:1.5px solid var(--navy)}.btn.gh2:hover:not([disabled]){background:var(--navy);color:var(--cream)}
 .btn[disabled]{opacity:.4;cursor:default}
 .note{font-size:13px;font-weight:600;color:var(--red)}
-.pls{display:grid;gap:8px}
-.pl{display:flex;gap:12px;align-items:flex-start;padding:11px 14px;border:1.5px solid var(--ln);border-radius:6px;cursor:pointer;background:#fff}
-.pl:has(input:checked){border-color:var(--red);background:#fdeceb}
-.pl input{accent-color:var(--red);margin-top:4px;width:18px;height:18px;flex:none}
+.pls{display:grid;gap:10px}
+.plg{display:flex;gap:12px;align-items:flex-start;padding:11px 14px;border:1.5px solid var(--ln);border-radius:6px;cursor:pointer;background:#fff}
+.plg:has(input:checked){border-color:var(--red);background:#fdeceb}
+.plg input{accent-color:var(--red);margin-top:4px;width:18px;height:18px;flex:none}
 .big{font-size:clamp(56px,9vw,84px);font-weight:700;letter-spacing:-.04em;line-height:1;color:var(--navy);font-variant-numeric:tabular-nums}
 .rank{font:italic 400 32px/1.1 'Instrument Serif',serif;color:var(--red);margin:6px 0 0}
 ul.rev{margin:8px 0 0;padding-left:18px;color:var(--mu);display:grid;gap:6px;font-size:15px}ul.rev b{color:var(--navy)}
@@ -174,7 +174,7 @@ function end(){
     pool=shuffle(lost.concat(extra)).slice(0,need+2),z=$('gz');
   z.innerHTML=`<div class="act"><h3>${missed.length?`You’re at ${1947+years()}. Knowledge got you here. Action takes you further.`:'A perfect 10. You reached 2047 on knowledge alone. Now make it real.'}</h3>
    <p>Pick ${need} pledges from these ${pool.length}.${missed.length?` Each pledge is worth 10 years${need>3?', so '+need+' get India to 2047':''}.`:' They go on your card.'}</p>
-   <div class="pls">${pool.map((p,n)=>`<label class="pl"><input type="checkbox" value="${n}"><span>${p}</span></label>`).join('')}</div>
+   <div class="pls">${pool.map((p,n)=>`<label class="plg"><input type="checkbox" value="${n}"><span>${p}</span></label>`).join('')}</div>
    <div class="grow"><button class="btn" id="lock" disabled>Lock in my pledges</button><span class="note" id="cnt">0 of ${need} picked</span></div></div>`;
   const boxes=[...z.querySelectorAll('input')],lock=$('lock'),cnt=$('cnt');
   const upd=()=>{const c=boxes.filter(b=>b.checked).length;boxes.forEach(b=>b.disabled=!b.checked&&c>=need);
