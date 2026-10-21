@@ -196,37 +196,39 @@ function rr(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);
 async function drawCard(){
   await Promise.all(['italic 400 120px "Instrument Serif"','700 64px Inter','600 34px Inter','500 24px Inter'].map(f=>document.fonts.load(f).catch(()=>{})));
   const [logo,iimb]=await Promise.all([img(LOGO_D),img(LOGO_I)]);
-  const cv=document.createElement('canvas');cv.width=W;cv.height=H;const c=cv.getContext('2d'),r=ranks.find(x=>score>=x[0]),yrs=1947+years();
-  c.fillStyle=CREAM;c.fillRect(0,0,W,H);
-  c.fillStyle=NAVY;c.fillRect(0,0,W,580);strip(c,0,24);
-  if(iimb){rr(c,W-262,62,202,86,8);c.fillStyle=CREAM;c.fill();c.drawImage(iimb,W-246,73,170,170*265/720)}
-  c.textBaseline='alphabetic';c.fillStyle=SKYL;c.font='700 24px Inter';spaced(c,'THE 2047 VISION GAME',60,116,5);
-  c.fillStyle=CREAM;fit(c,name,'italic 400 #px "Instrument Serif"',132,W-120,60);c.fillText(name,60,272);
-  c.font='600 38px Inter';c.fillStyle=CREAM;c.fillText(years()>=100?'is building a developed India by 2047':'is on the road to a developed India',60,336);
-  const bx=[[`${score}/10`,'VISION SCORE'],[years()>=100?'2047':String(yrs),'YEAR REACHED'],[r[1],'RANK']],bw=(W-120-2*20)/3;
-  bx.forEach((b,n)=>{const x=60+n*(bw+20),y=392;rr(c,x,y,bw,136,8);c.strokeStyle='rgba(255,241,214,.28)';c.lineWidth=2;c.stroke();
-    c.fillStyle=SKYL;c.font='700 18px Inter';spaced(c,b[1],x+22,y+38,3);
-    if(n<2){c.fillStyle=CREAM;c.font='700 60px Inter';c.fillText(b[0],x+22,y+106)}
-    else{c.fillStyle='#ff9aa0';const ln=wrap((c.font='italic 400 38px "Instrument Serif"',c),b[0],bw-40);ln.slice(0,2).forEach((l,k)=>c.fillText(l,x+22,y+(ln.length>1?80+k*36:100)))}});
-  c.fillStyle=RED;c.font='700 22px Inter';spaced(c,'MY PLEDGES FOR INDIA 2047',60,650,5);c.fillRect(60,668,60,4);
+  const cv=document.createElement('canvas');cv.width=W;cv.height=H;const c=cv.getContext('2d');
+  c.fillStyle=CREAM;c.fillRect(0,0,W,H);c.textBaseline='alphabetic';
+  // headline: the name sits inside the sentence, same type, picked out in colour
+  const words=name.split(' ').map(t=>[t,'#ff9aa0']).concat('has pledged to help build a developed India by 2047.'.split(' ').map(t=>[t,CREAM]));
+  let fs=66,lines;do{c.font=`700 ${fs}px Inter`;lines=[[]];let lw=0;const sp=c.measureText(' ').width;
+    words.forEach(w=>{const ww=c.measureText(w[0]).width;if(lw&&lw+sp+ww>W-120){lines.push([]);lw=0}lines[lines.length-1].push(w);lw+=(lw?sp:0)+ww})}while(lines.length>4&&(fs-=6)>=42);
+  const LHh=Math.round(fs*1.14),hy=232,NB=Math.max(420,hy+(lines.length-1)*LHh+84);
+  c.fillStyle=NAVY;c.fillRect(0,0,W,NB);strip(c,0,24);
+  if(iimb){rr(c,W-262,62,202,86,8);c.fillStyle='#fff';c.fill();c.drawImage(iimb,W-246,73,170,170*265/720)}
+  c.fillStyle=SKYL;c.font='700 24px Inter';spaced(c,'THE 2047 VISION GAME',60,116,5);
+  c.font=`700 ${fs}px Inter`;const sp=c.measureText(' ').width;
+  lines.forEach((ln,k)=>{let x=60;ln.forEach(w=>{c.fillStyle=w[1];c.fillText(w[0],x,hy+k*LHh);x+=c.measureText(w[0]).width+sp})});
+  // heading, pledges and closing line sit as one block, centred in the cream area
   c.font='600 32px Inter';const PL=pledges.map(p=>wrap(c,p.replace(/^I'll /,'I will '),W-210)),GAP=30,LH=42;
-  let y=700+(330-(PL.reduce((t,l)=>t+l.length*LH,0)+GAP*(PL.length-1)))/2+30;
+  const plH=PL.reduce((t,l)=>t+l.length*LH,0)+GAP*(PL.length-1),blk=26+64+plH+70+30;
+  let y=NB+(1150-NB-blk)/2+22;
+  c.fillStyle=RED;c.font='700 22px Inter';spaced(c,'MY PLEDGES FOR INDIA 2047',60,y,5);c.fillRect(60,y+18,60,4);y+=64+30;
   PL.forEach((ln,n)=>{c.fillStyle=RED;c.font='italic 400 58px "Instrument Serif"';c.fillText('0'+(n+1),60,y+14);
     c.fillStyle=NAVY;c.font='600 32px Inter';ln.forEach((l,k)=>c.fillText(l,150,y+k*LH));y+=ln.length*LH+GAP});
-  c.fillStyle=NAVY;c.font='700 30px Inter';c.fillText('Can we get there by 2047?',60,1096);const qw=c.measureText('Can we get there by 2047? ').width;
-  c.fillStyle=RED;c.font='italic 400 40px "Instrument Serif"';c.fillText('Yes, together we can.',60+qw,1096);
+  y+=70-GAP+4;
+  c.fillStyle=NAVY;c.font='700 30px Inter';c.fillText('Can we get there by 2047?',60,y);const qw=c.measureText('Can we get there by 2047? ').width;
+  c.fillStyle=RED;c.font='italic 400 40px "Instrument Serif"';c.fillText('Yes, together we can.',60+qw,y);
   c.fillStyle='#fff8ea';c.fillRect(0,1150,W,H-1150);c.fillStyle=RED;c.fillRect(0,1150,W,6);
   if(logo)c.drawImage(logo,60,1176,148*362/509,148);
-  c.fillStyle=NAVY;c.font='700 38px Inter';c.fillText('Join me at Drishti 2026',200,1222);
+  c.fillStyle=NAVY;c.font='700 38px Inter';c.fillText('Join us at Drishti 2026',200,1222);
   c.fillStyle=RED;c.font='italic 400 32px "Instrument Serif"';c.fillText('India 2047: Decisive Moves for the Next Decades',200,1264);
   c.fillStyle=MU;c.font='500 23px Inter';c.fillText('13–14 Nov 2026 · IIM Bangalore · Play at pgpem.in/drishti-2026',200,1306);
   strip(c,H-14,14);
   return new Promise((res,rej)=>{try{cv.toBlob(b=>b?res({blob:b,url:URL.createObjectURL(b)}):rej(new Error('empty')),'image/png')}catch(e){rej(e)}});
 }
 function caption(short){
-  const yrs=years()>=100?'reached 2047':'reached '+(1947+years());
-  if(short)return `I scored ${score}/10 in the 2047 Vision Game and ${yrs}. India gets to 2047 together. Play, pledge, and join us at #Drishti2026, IIM Bangalore, 13–14 Nov.`;
-  return `I scored ${score}/10 in the 2047 Vision Game and ${yrs} on the road to a developed India.\n\nMy pledges:\n${pledges.map(p=>'• '+p.replace(/^I'll /,'I will ')).join('\n')}\n\nIndia gets to 2047 together, one pledge at a time. Play the game, add yours, and join the conversation at Drishti 2026, the business and cultural fest of PGPEM, IIM Bangalore, on 13–14 November.\n\n${URL_GAME}\n\n${TAGS}`;
+  if(short)return `I just made ${pledges.length} pledges for a developed India in the 2047 Vision Game. India gets to 2047 together. Play, pledge, and join us at #Drishti2026, IIM Bangalore, 13–14 Nov.`;
+  return `I just made ${pledges.length} pledges for a developed India by 2047 in the 2047 Vision Game.\n\nMy pledges:\n${pledges.map(p=>'• '+p.replace(/^I'll /,'I will ')).join('\n')}\n\nIndia gets to 2047 together, one pledge at a time. Play the game, add yours, and join the conversation at Drishti 2026, the business and cultural fest of PGPEM, IIM Bangalore, on 13–14 November.\n\n${URL_GAME}\n\n${TAGS}`;
 }
 const fileName=()=>`drishti-2047-vision-${first().toLowerCase().replace(/[^a-z0-9]+/g,'')||'card'}.png`;
 function download(){const a=document.createElement('a');a.href=URL.createObjectURL(cardBlob);a.download=fileName();document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000)}
@@ -241,10 +243,10 @@ const ICON={li:'<path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85
 const svg=k=>`<svg viewBox="0 0 24 24" aria-hidden="true">${ICON[k]}</svg>`;
 async function result(){
   track('vision_game_complete',{score:score});
-  hello('Can we get there by 2047? Yes, we can, with your help.');
+  hello('Thank you for your pledges. Here’s your card to share.');
   card.innerHTML=`<div class="res"><div style="position:relative"><img class="prev" id="prev" alt="Your 2047 Vision Game card"><p class="pmsg" id="prevMsg">Drawing your card…</p></div>
   <div style="display:flex;flex-direction:column;gap:16px"><div><div class="ey">Your card is ready</div>
-  <h2 style="font-size:clamp(26px,3.4vw,36px);margin-top:12px">Can we get there? <em class="s" style="color:var(--red)">Yes, with you.</em></h2>
+  <h2 style="font-size:clamp(26px,3.4vw,36px);margin-top:12px">Can we get there? <em class="s" style="color:var(--red)">Yes, together we can.</em></h2>
   <p style="margin:8px 0 0;color:var(--mu)">A developed India by 2047 is built by people who know what it takes and act on it. Share your pledges and bring others along.</p></div>
   <div class="sh2"><button class="btn li" data-s="linkedin">${svg('li')}LinkedIn</button><button class="btn x" data-s="x">${svg('x')}X</button>
   <button class="btn ig" data-s="instagram">${svg('ig')}Instagram</button><button class="btn wa" data-s="whatsapp">${svg('wa')}WhatsApp</button></div>
