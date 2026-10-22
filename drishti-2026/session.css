@@ -18,7 +18,7 @@ nav .w{display:flex;justify-content:space-between;align-items:center;height:62px
 .b:hover{transform:translateY(-2px);background:var(--red2);box-shadow:0 14px 30px -12px rgba(193,23,32,.7)}.b.sm{padding:8px 18px;font-size:14px}
 .b.g{background:none;border:1.5px solid var(--navy);color:var(--navy)!important}.b.g:hover{background:var(--navy);color:var(--cream)!important;box-shadow:none}
 @media(max-width:700px){.nl a:not(.b){display:none}}
-.ey{font-size:12px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;color:var(--red);display:flex;align-items:center;gap:12px}.ey:before{content:"";width:34px;height:2px;background:currentColor}
+.ey{font-size:12px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;color:var(--red);display:flex;align-items:center;gap:12px}
 .d .ey,.cta .ey{color:#8dbad6}
 .back{display:inline-block;font-size:14px;font-weight:600;margin-bottom:22px;color:var(--navy);border-bottom:1.5px solid currentColor}.back:hover{color:var(--red)}
 .sh{background:var(--cream);padding:46px 0 84px}
