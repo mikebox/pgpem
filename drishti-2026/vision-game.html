@@ -89,7 +89,7 @@ input.nm:focus{outline:3px solid var(--sky);outline-offset:1px}
 <section class="card" id="card" aria-live="polite"></section>
 <p class="src">Figures are approximate and based on World Bank and UN data up to mid-2026.</p>
 </div></main>
-<section class="cta"><div class="w"><div class="ey">13–14 November 2026 · IIM Bangalore</div><h2>Be in the room where <em class="s">2047</em> gets planned.</h2><p>Keynotes, panels, a case competition and Pro Night, with working professionals and MBA students.</p><a class="b" data-reg href="#" target="_blank" rel="noopener">Register on Unstop ↗</a></div></section>
+<section class="cta"><div class="w"><div class="ey">13-14 November 2026 · IIM Bangalore</div><h2>Be in the room where <em class="s">2047</em> gets planned.</h2><p>Keynotes, panels, a case competition and Pro Night, with working professionals and MBA students.</p><a class="b" data-reg href="#" target="_blank" rel="noopener">Register on Unstop ↗</a></div></section>
 <div class="fs"></div>
 <footer><div class="w"><div><div class="ilg"><img src="../images/iimb-pgpem.png" alt="IIM Bangalore · PGPEM" width="130" height="48"></div><div class="lg">DRISHTI<i>.</i>26</div><p style="margin:10px 0 0">PGPEM, Indian Institute of Management Bangalore</p></div><div>Programme and speakers subject to change.<br>© 2026 Drishti</div></div></footer>
 <div class="toast" id="toast" role="status"></div>
@@ -227,14 +227,14 @@ async function drawCard(){
   if(logo)c.drawImage(logo,60,CB+22,112*362/509,112);
   c.fillStyle=NAVY;c.font='700 34px Inter';c.fillText('Join us at Drishti 2026',180,CB+62);
   c.fillStyle=RED;c.font='italic 400 30px "Instrument Serif"';c.fillText('India 2047: Decisive Moves for the Next Decades',180,CB+100);
-  c.fillStyle=MU;c.font='500 22px Inter';c.fillText('13–14 Nov 2026 · IIM Bangalore · pgpem.in/drishti-2026',180,CB+136);
+  c.fillStyle=MU;c.font='500 22px Inter';c.fillText('13-14 Nov 2026 · IIM Bangalore · pgpem.in/drishti-2026',180,CB+136);
   strip(c,H-12,12);
   return new Promise((res,rej)=>{try{cv.toBlob(b=>b?res({blob:b,url:URL.createObjectURL(b),h:H}):rej(new Error('empty')),'image/png')}catch(e){rej(e)}});
 }
 function caption(short){
   const hook='In 2047, independent India turns 100. Can we get there as a developed nation?';
-  if(short)return `${hook} I played the 2047 Vision Game and made my pledges. Add yours and join us at #Drishti2026, IIM Bangalore, 13–14 Nov.`;
-  return `${hook}\n\nI played the 2047 Vision Game and made my pledges:\n${pledges.map(p=>'• '+p.replace(/^I'll /,'I will ')).join('\n')}\n\nIndia gets to 2047 together, one pledge at a time. Play the game, add yours, and join the conversation at Drishti 2026, the business and cultural fest of PGPEM, IIM Bangalore, on 13–14 November.\n\n${URL_SHARE}\n\n${TAGS}`;
+  if(short)return `${hook} I played the 2047 Vision Game and made my pledges. Add yours and join us at #Drishti2026, IIM Bangalore, 13-14 Nov.`;
+  return `${hook}\n\nI played the 2047 Vision Game and made my pledges:\n${pledges.map(p=>'• '+p.replace(/^I'll /,'I will ')).join('\n')}\n\nIndia gets to 2047 together, one pledge at a time. Play the game, add yours, and join the conversation at Drishti 2026, the business and cultural fest of PGPEM, IIM Bangalore, on 13-14 November.\n\n${URL_SHARE}\n\n${TAGS}`;
 }
 const fileName=()=>`drishti-2047-vision-${first().toLowerCase().replace(/[^a-z0-9]+/g,'')||'card'}.png`;
 function download(){const a=document.createElement('a');a.href=URL.createObjectURL(cardBlob);a.download=fileName();document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000)}
@@ -259,7 +259,7 @@ async function result(){
   <button class="btn ig" data-s="instagram">${svg('ig')}Instagram</button><button class="btn wa" data-s="whatsapp">${svg('wa')}WhatsApp</button></div>
   <div class="grow"><button class="btn nv" id="dl">${svg('dl')}Download image</button><button class="btn nv" id="sf" hidden>${svg('sh')}Share image</button></div>
   <div class="grow"><button class="btn gh2" id="cc">Copy caption</button><button class="btn gh2" id="again">Play again</button></div></div></div>
-  <div class="prom"><div class="ey">13–14 Nov 2026 · IIM Bangalore</div><h3>Take the conversation to <em class="s">Drishti 2026.</em></h3>
+  <div class="prom"><div class="ey">13-14 Nov 2026 · IIM Bangalore</div><h3>Take the conversation to <em class="s">Drishti 2026.</em></h3>
   <p>India 2047: Decisive Moves for the Next Decades. Keynotes, panels, the Boardroom Brawlz case competition and Pro Night, with working professionals and MBA students.</p>
   <div class="grow" style="margin-top:6px"><a class="b" data-reg href="#" target="_blank" rel="noopener">Register on Unstop ↗</a><a class="b g" href="index.html#agenda" style="border-color:var(--cream);color:var(--cream)!important">See the agenda</a></div></div>`;
   document.querySelectorAll('[data-reg]').forEach(a=>a.href="https://unstop.com/college-fests/drishti-2026-hosted-by-pgpem-iim-bangalore-indian-institute-of-management-iim-bangalore-523573");
