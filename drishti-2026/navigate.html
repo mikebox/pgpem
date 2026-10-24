@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N02T4JXVV4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-N02T4JXVV4');
+</script>
+<meta property="og:type" content="website"><meta property="og:site_name" content="PGPEM · IIM Bangalore"><meta property="og:title" content="Campus Navigator · Drishti 2026"><meta property="og:description" content="Find your way around IIM Bangalore at Drishti 2026. Pick a session and get walking directions to its venue."><meta property="og:url" content="https://pgpem.in/drishti-2026/navigate.html"><meta property="og:image" content="https://pgpem.in/images/og-drishti.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Campus Navigator · Drishti 2026"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Campus Navigator · Drishti 2026"><meta name="twitter:description" content="Find your way around IIM Bangalore at Drishti 2026. Pick a session and get walking directions to its venue."><meta name="twitter:image" content="https://pgpem.in/images/og-drishti.jpg">
+<link rel="icon" href="../favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png"><link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Campus Navigator · Drishti 2026</title>
+<meta name="description" content="Find your way around IIM Bangalore at Drishti 2026. Pick a session and get walking directions to its venue.">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="session.css">
+<style>
+.sh{padding:34px 0 40px}.sh h1{font-size:clamp(38px,5.6vw,76px)}.sh .lead{margin-top:16px}
+.lab{font-family:Archivo,system-ui,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700}
+.app{background:var(--paper);padding:28px 0 80px}
+.ap{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(320px,1fr);gap:22px;align-items:start}
+.mc{position:sticky;top:92px;height:calc(100vh - 116px);min-height:460px;background:#fff;border:1.5px solid var(--navy);border-radius:6px;overflow:hidden}
+#map{display:block;width:100%;height:100%;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}#map.drag{cursor:grabbing}#map.pick{cursor:crosshair}
+.pin{cursor:pointer}.pin:focus{outline:none}.pin:focus-visible .pc{stroke:var(--sky);stroke-width:5}
+.pin text{font:700 15px Outfit,system-ui,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central;pointer-events:none}
+.pin.es text{font-size:12px;fill:var(--navy)}
+.pin .ring{fill:none;stroke:var(--red);stroke-width:3;opacity:0}
+.pin.to .ring{animation:ring 1.6s ease-out infinite}.pin.to .pc{fill:var(--red)}.pin.es.to text{fill:#fff}
+.pin .tip{opacity:0;transition:opacity .2s}.pin.to .tip,.pin.fr .tip,.pin:hover .tip{opacity:1}
+.tip rect{fill:var(--navy)}.tip text{font:600 13px Outfit,system-ui,sans-serif;fill:var(--cream);text-anchor:start}
+@keyframes ring{0%{r:18;opacity:.9}100%{r:40;opacity:0}}
+#me .halo{fill:var(--sky);opacity:.35;animation:halo 2s ease-out infinite}@keyframes halo{0%{r:10;opacity:.5}100%{r:34;opacity:0}}
+@media(prefers-reduced-motion:reduce){.pin.to .ring,#me .halo{animation:none}}
+.zc{position:absolute;top:12px;right:12px;display:flex;flex-direction:column;gap:6px}
+.zc button,.ic{width:40px;height:40px;border-radius:6px;border:0;background:var(--navy);color:var(--cream);font:600 20px/1 Outfit,sans-serif;cursor:pointer;display:grid;place-items:center}
+.zc button:hover{background:var(--red)}
+.mh{position:absolute;left:12px;top:12px;background:rgba(255,255,255,.92);border:1px solid var(--ln);border-radius:4px;padding:6px 10px;color:var(--mu);pointer-events:none;max-width:calc(100% - 80px)}
+.pk{position:absolute;left:50%;top:12px;transform:translateX(-50%);background:var(--sky);color:var(--navy);border-radius:999px;padding:8px 8px 8px 18px;font-weight:600;font-size:14px;display:none;align-items:center;gap:12px;white-space:nowrap;box-shadow:0 10px 24px -12px rgba(12,50,73,.6)}
+.pk button{border:0;background:var(--navy);color:var(--cream);border-radius:999px;padding:6px 12px;font:600 13px Outfit,sans-serif;cursor:pointer}
+.mc.picking .pk{display:flex}.mc.picking .mh{display:none}
+.stp{position:absolute;left:12px;right:12px;bottom:12px;background:var(--navy);color:var(--cream);border-radius:6px;padding:16px 18px;display:none;gap:14px;align-items:center;box-shadow:0 18px 40px -18px rgba(12,50,73,.8)}
+.mc.stepping .stp{display:flex}.stp .lab{color:var(--sky)}.stp p{margin:4px 0 0;font-size:16px;line-height:1.4;font-weight:500}.stp .tx{flex:1;min-width:0}
+.stp .ic{background:rgba(255,241,214,.12);flex:none}.stp .ic:hover{background:var(--red)}.stp .ic:disabled{opacity:.35;cursor:default;background:rgba(255,241,214,.12)}
+.stp .x{position:absolute;top:-14px;right:-6px;width:30px;height:30px;font-size:16px;background:var(--red)}
+.pn{display:flex;flex-direction:column;gap:16px}
+.cd{background:var(--cream);border:1.5px solid var(--navy);border-radius:6px;padding:20px}
+.lv{background:var(--navy);color:var(--cream);border-color:var(--navy);border-top:5px solid var(--red)}
+.lv .lab{color:var(--sky)}.lv h3{font-size:22px;margin:8px 0 6px;letter-spacing:-.02em;line-height:1.15}.lv .mt{color:#b4cada;font-size:15px}
+.lv .b{margin-top:14px;padding:10px 20px;font-size:15px}.lv .nx{margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,241,214,.18);font-size:14px;color:#b4cada}.lv .nx b{color:var(--cream);font-weight:600}
+.rp .lab{color:var(--red)}
+.fld{display:grid;grid-template-columns:44px 1fr;gap:10px;align-items:center;margin-top:10px}
+.dot{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font:700 11px Archivo,sans-serif;letter-spacing:.12em;color:#fff}.dot.f{background:var(--sky);color:var(--navy)}.dot.t{background:var(--red)}
+select{width:100%;appearance:none;-webkit-appearance:none;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%230c3249' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 14px center;border:1.5px solid var(--navy);border-radius:6px;padding:11px 36px 11px 12px;font:500 16px Outfit,system-ui,sans-serif;color:var(--navy);cursor:pointer}
+select:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+.ops{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 0 54px}
+.chipb{border:1.5px solid var(--navy);background:transparent;color:var(--navy);border-radius:999px;padding:6px 12px;font:600 13px Outfit,sans-serif;cursor:pointer;display:inline-flex;gap:6px;align-items:center}.chipb:hover{background:var(--navy);color:var(--cream)}
+.chipb svg{width:14px;height:14px}
+.sw{margin:8px 0 0 3px;width:38px;height:28px;border:0;background:none;color:var(--navy);cursor:pointer;font-size:18px;border-radius:4px}.sw:hover{color:var(--red)}
+.msg{margin:12px 0 0;font-size:14px;color:var(--mu);background:#fff;border-left:3px solid var(--sky);padding:10px 12px;border-radius:0 4px 4px 0;display:none}.msg.on{display:block}.msg a{color:var(--red);font-weight:600;border-bottom:1.5px solid currentColor}
+.rr{margin-top:18px;padding-top:16px;border-top:1.5px solid var(--ln);display:none}.rr.on{display:block}
+.sm{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}.sm b{font:300 46px/1 Outfit,sans-serif;color:var(--red);letter-spacing:-.02em}.sm span{color:var(--mu);font-size:15px}
+.dsc{margin:10px 0 0;font-size:15px;color:#24475d}
+ol.st{list-style:none;margin:14px 0 0;padding:0;counter-reset:s}
+ol.st li{position:relative;padding:10px 10px 10px 42px;border-radius:6px;cursor:pointer;font-size:15px;line-height:1.4;transition:background .2s}
+ol.st li:hover{background:rgba(103,156,188,.16)}ol.st li.on{background:var(--navy);color:var(--cream)}
+ol.st li svg{position:absolute;left:10px;top:10px;width:22px;height:22px;color:var(--red)}ol.st li.on svg{color:var(--sky)}
+ol.st li small{display:block;font-family:Archivo,sans-serif;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--mu);margin-top:2px}ol.st li.on small{color:#b4cada}
+.ac{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.ac .b{padding:11px 20px;font-size:15px}.ac .b.g{font-size:15px}
+.tb{display:flex;border-bottom:1.5px solid var(--navy);margin:-4px 0 4px}
+.tb button{flex:1;border:0;background:none;padding:10px 6px 12px;font:700 11.5px Archivo,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--mu);cursor:pointer;border-bottom:4px solid transparent;margin-bottom:-1.5px}
+.tb button[aria-selected=true]{color:var(--navy);border-color:var(--red)}
+.dy{display:flex;gap:8px;margin:14px 0 6px}.dy button{border:1.5px solid var(--navy);background:none;border-radius:999px;padding:5px 14px;font:600 13px Outfit,sans-serif;color:var(--navy);cursor:pointer}.dy button[aria-pressed=true]{background:var(--navy);color:var(--cream)}
+.ls{list-style:none;margin:0;padding:0}
+.ls li{border-bottom:1px solid var(--ln)}.ls li:last-child{border-bottom:0}
+.ls button{all:unset;box-sizing:border-box;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;width:100%;padding:12px 6px;cursor:pointer;border-radius:4px}
+.ls button:hover{background:rgba(103,156,188,.14)}.ls button:focus-visible{outline:3px solid var(--sky)}
+.ls .tm{font-family:Archivo,sans-serif;font-size:11px;letter-spacing:.14em;color:var(--mu);font-weight:600;width:62px;line-height:1.35}
+.ls .tt{font-weight:600;line-height:1.25}.ls .tt small{display:block;font-weight:400;color:var(--mu);font-size:13.5px;margin-top:3px}
+.ls .go{color:var(--red);font-size:18px}
+.ls .nb{width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:700;font-size:14px}.ls .nb.r{background:var(--red)}.ls .nb.e{background:var(--sky);color:var(--navy);font-size:12px}
+.bdg{display:inline-block;font-family:Archivo,sans-serif;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;background:var(--red);color:#fff;padding:2px 7px;border-radius:3px;margin-left:6px;vertical-align:2px}.bdg.n{background:var(--sky);color:var(--navy)}
+.eh{margin:18px 0 4px;color:var(--red)}
+.org{margin:16px 0 0;font-size:13.5px;color:var(--mu)}.org a{color:var(--navy);font-weight:600;border-bottom:1.5px solid currentColor}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--navy);color:var(--cream);padding:10px 18px;border-radius:999px;font-weight:600;font-size:14px;opacity:0;pointer-events:none;transition:.25s;z-index:60}.toast.on{opacity:1;transform:translate(-50%,0)}
+@media(max-width:900px){
+.ap{grid-template-columns:1fr;gap:14px}
+.mc{top:76px;height:52svh;min-height:300px;z-index:5;border-radius:0;border-left:0;border-right:0;margin:0 -24px}
+.app{padding-top:0}.sh{padding-bottom:26px}
+.stp{padding:12px 14px}.stp p{font-size:15px}
+}
+/* printable QR signposts: navigate.html?signs */
+.signs{display:none}
+body.sg>*:not(.signs){display:none!important}body.sg .signs{display:block;background:#fff}
+.signs .bar{padding:18px 24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;background:var(--cream)}
+.signs .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0}
+.sign{border:1px dashed #b8c6cf;padding:28px;text-align:center;break-inside:avoid;page-break-inside:avoid}
+.sign .lg{color:var(--navy);display:block;margin-bottom:12px}.sign h2{font-size:30px;margin:8px 0 4px}.sign p{margin:0 0 16px;color:var(--mu)}
+.sign .qr{display:inline-block;padding:10px;background:#fff}.sign .qr img,.sign .qr canvas{display:block;width:180px;height:180px}
+.sign .n{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;font-size:20px}.sign .n.r{background:var(--red)}
+@media print{.signs .bar{display:none}.sign{border-color:#ccc}}
+</style>
+</head><body>
+<nav><div class="fs th"></div><div class="w"><a class="lg" href="index.html">DRISHTI<i>.</i>26</a><div class="nl"><a href="index.html#agenda">Agenda</a><a href="index.html#speakers">Speakers</a><a class="b sm" data-reg href="#" target="_blank" rel="noopener">Register ↗</a></div></div></nav>
+<header class="sh"><div class="w"><a class="back" href="index.html">← Back to Drishti 2026</a>
+<div class="ey">Campus navigator · IIM Bangalore</div>
+<h1>Find <em class="s" style="color:var(--red)">your way.</em></h1>
+<p class="lead">Pick a session or a place and we’ll draw the walk from where you are. Tap a numbered pin to go there, or step through the route as you walk.</p></div></header>
+<div class="fs"></div>
+<section class="app"><div class="w"><div class="ap">
+<div class="mc" id="mc">
+<svg id="map" viewBox="0 0 2000 1457" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Map of the IIM Bangalore campus with Drishti venues">
+<rect width="2000" height="1457" fill="#fff"/>
+<image href="../images/iimb-campus-map.webp" width="2000" height="1457"/>
+<g id="rt"><path id="rc" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"/><path id="rl" fill="none" stroke="#c11720" stroke-linecap="round" stroke-linejoin="round"/><path id="rs" fill="none" stroke="#0c3249" stroke-linecap="round" stroke-linejoin="round"/><path id="ra" fill="none" stroke="#fff" stroke-linecap="round"/></g>
+<g id="pins"></g>
+<g id="me" style="display:none"><circle class="halo" r="10"/><circle r="11" fill="#fff"/><circle r="7.5" fill="#0c3249"/></g>
+</svg>
+<div class="mh lab" id="mh">Drag to move · pinch to zoom</div>
+<div class="pk">Tap where you are on the map <button type="button" id="pkx">Cancel</button></div>
+<div class="zc"><button type="button" id="zi" aria-label="Zoom in">+</button><button type="button" id="zo" aria-label="Zoom out">−</button><button type="button" id="zf" aria-label="Fit the route" style="font-size:16px">⤢</button></div>
+<div class="stp" role="region" aria-label="Step by step directions" aria-live="polite"><button class="ic" type="button" id="sp" aria-label="Previous step">←</button><div class="tx"><div class="lab" id="sn"></div><p id="stx"></p></div><button class="ic" type="button" id="sx" aria-label="Next step">→</button><button class="ic x" type="button" id="sc" aria-label="Exit step by step">✕</button></div>
+</div>
+<div class="pn">
+<div class="cd lv" id="lv"></div>
+<div class="cd rp">
+<div class="lab">Plan your walk</div>
+<div class="fld"><span class="dot f">FROM</span><select id="fr" aria-label="Start from"></select></div>
+<div class="ops"><button type="button" class="chipb" id="gl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="7"/><path d="M12 1v4M12 19v4M1 12h4M19 12h4"/></svg>Use my location</button><button type="button" class="chipb" id="tp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 22s7-7.2 7-12.5A7 7 0 0 0 5 9.5C5 14.8 12 22 12 22z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Tap the map</button></div>
+<button type="button" class="sw" id="sw" aria-label="Swap start and destination">⇅</button>
+<div class="fld" style="margin-top:0"><span class="dot t">TO</span><select id="to" aria-label="Destination"></select></div>
+<p class="msg" id="msg" role="status"></p>
+<div class="rr" id="rr">
+<div class="sm"><b id="rmin"></b><span id="rdist"></span></div>
+<p class="dsc" id="rdsc"></p>
+<ol class="st" id="st"></ol>
+<div class="ac"><button type="button" class="b" id="wk">Walk me through it →</button><button type="button" class="b g" id="sh">Share route</button></div>
+</div>
+</div>
+<div class="cd">
+<div class="tb" role="tablist"><button role="tab" id="tbs" aria-selected="true">By session</button><button role="tab" id="tbp" aria-selected="false">By place</button></div>
+<div id="pvs"><div class="dy" id="dy"></div><ul class="ls" id="sl"></ul></div>
+<div id="pvp" hidden><ul class="ls" id="pl"></ul><p class="org">Organisers: <a href="?signs">print QR signposts</a> for each place. Scanning one opens this page with the start already set.</p></div>
+</div>
+</div>
+</div></div></section>
+<section class="cta"><div class="w"><div class="ey">13-14 November 2026 · IIM Bangalore</div><h2>Hear experts debate the ideas shaping <em class="s">2047</em>.</h2><p>Register on Unstop for case competitions, Take a Seat sessions and the full programme.</p><a class="b" data-reg href="#" target="_blank" rel="noopener">Register on Unstop ↗</a></div></section>
+<div class="fs"></div>
+<footer><div class="w"><div class="fb"><div class="ilg"><img src="../images/iimb-pgpem.png" alt="IIM Bangalore · PGPEM" width="130" height="48"></div><div><div class="lg">DRISHTI<i>.</i>26</div><p>PGPEM, Indian Institute of Management Bangalore</p></div></div><p class="fn">Map not to scale. Walking times are approximate.<br>© 2026 Drishti</p></div></footer>
+<div class="signs" id="signs"><div class="bar"><b>QR signposts</b><span class="mu">One per place. Print, cut along the dashed lines and put each one up at its place.</span><button type="button" class="b sm" onclick="print()">Print</button><a class="back" style="margin:0" href="navigate.html">← Back to the navigator</a></div><div class="grid" id="sgg"></div></div>
+<div class="toast" id="toast" role="status"></div>
+<script src="session.js"></script>
+<script>
+(function(){
+var MW=2000,MH=1457,MPX=.5,WALK=75;// metres per map pixel and metres per minute, both rough: the map is not to scale
+var CAMPUS=[12.89528,77.60139];
+// Walkways traced over the campus map, in map pixels. Named nodes are used in the directions.
+var N={gate:[906,190,"the Main Gate"],g1:[906,262,"the first junction inside the gate"],g2:[737,266,"the corner of the MDC Woods"],g3:[737,470,"the foot of the woods path"],g4:[712,488,"the Reception car park"],park:[686,452,"the car park"],rec:[639,499,"Reception"],
+j1:[585,499,"the walkway west of Reception"],j2:[572,499],j3:[572,481],lcl:[508,481,"L Cluster"],j4:[480,481],j5:[480,459],j6:[455,459,"the walkway down to the Pergola"],j7:[384,459,"the Auditorium corner"],aud:[384,475],
+k0:[585,555,"K Cluster"],kcl:[533,555],v585:[585,610,"the Central Pergola walkway"],o0:[585,690,"the Open Air Theatre"],oat:[655,690],c0:[585,755,"the Cafe"],cafe:[612,755],s0:[585,780,"the Ice Cream Parlour"],s1:[667,780,"the Ice Cream Parlour"],s2:[667,860,"the car park by the Ice Cream Parlour"],exe:[598,902],
+fc0:[405,610,"the west end of the Pergola"],fc1:[350,614,"P Cluster"],food:[335,652],v455:[455,610,"the Central Pergola"],perg:[477,610],lib0:[515,610,"the Library"],lib:[515,648],atm0:[675,610,"the ATM"],atm:[675,588],e705:[705,610],hc:[668,552],
+e1:[1050,268,"the road junction east of the gate"],e2:[1045,295,"the east side of the MDC Woods"],e3:[1015,462],e4:[935,470,"the MDC entrance"],mw:[783,488,"MDC Woods"],mdch:[939,571]};
+var E="gate g1,g1 g2,g2 g3,g3 g4,g4 rec,g4 park,rec j1,j1 j2,j2 j3,j3 lcl,lcl j4,j4 j5,j5 j6,j6 j7,j7 aud,j1 k0,k0 kcl,k0 v585,v585 o0,o0 oat,o0 c0,c0 cafe,c0 s0,s0 s1,s1 s2,s2 exe,j6 v455,fc0 v455,fc0 fc1,fc1 food,v455 perg,perg lib0,lib0 lib,lib0 v585,v585 atm0,atm0 atm,atm0 e705,rec hc,g1 e1,e1 e2,e2 e3,e3 e4,g3 mw,mw e4,e4 mdch".split(",").map(function(s){return s.split(" ")});
+// Places: id, pin label, name, node, description. Numbered venues first, then essentials.
+var V=[["gate","1","Main Gate","gate","Enter from Bannerghatta Road. Walk in and bear left for the academic blocks."],
+["rec","2","Reception","rec","At the edge of the academic blocks, beside K Cluster. Ask here if you are lost."],
+["aud","3","Auditorium","aud","Among the faculty blocks. From Reception, walk west past L Cluster."],
+["kcl","4","K Cluster Classrooms","kcl","Just west of Reception, between L Cluster and the Central Pergola."],
+["perg","5","Central Pergola","perg","The covered walkway at the heart of the academic area, south of K Cluster."],
+["mdch","6","MDC Conference Hall","mdch","In the Management Development Centre, across the road east of Reception."],
+["oat","7","Open Air Theatre","oat","South of the Health Centre, next to the Cafe."],
+["food","8","Food Court","food","West end of the academic area, beside P Cluster."],
+["park","P","Parking","park","The car park beside Reception."],
+["hc","+","Health Centre","hc","Just south of Reception, for first aid."],
+["atm","₹","ATM","atm","Beside the Health Centre, on the Pergola walkway."],
+["cafe","C","Cafe","cafe","Next to the Open Air Theatre."],
+["lib","L","Library","lib","South of the Central Pergola."],
+["exe","E","Executive Block","exe","South of the Cafe and the Ice Cream Parlour."]];
+var VB={};V.forEach(function(v){VB[v[0]]={id:v[0],no:v[1],name:v[2],node:v[3],desc:v[4],es:!/^\d$/.test(v[1])}});
+// Sessions with venues. Times in IST.
+var S=[[1,"09:00","10:00","Registration","Registration for workshops","rec"],
+[1,"10:00","13:15","Workshop / Masterclass 1 & 2","Two parallel tracks","kcl"],
+[1,"14:30","15:15","Inauguration Ceremony","Inaugural song & dance · Chairperson’s speech","aud"],
+[1,"15:15","16:00","Chief Guest Speech","","aud"],
+[1,"16:20","17:20","The Human Imperative: Purpose, Creativity and Agency in the Age of AI","Panel 1","aud"],
+[1,"17:30","18:30","Keynote Address: India 2047","Keynote","aud"],
+[1,"18:45","19:45","Stand-Up Comic Act","Comedy","oat"],
+[1,"20:00","22:30","Alumni Connect Dinner","Networking","food"],
+[2,"09:00","09:30","Registration","Registration for Take a Seat & Boardroom Brawlz","rec"],
+[2,"09:30","11:00","Take a Seat @ IIMB 1 & 2","Sit in on a real IIMB class","kcl"],
+[2,"11:15","13:30","Boardroom Brawlz","Case competition","mdch"],
+[2,"15:00","16:00","Power Play 2047: Decarbonising Without Slowing Down","Speaker session","aud"],
+[2,"16:20","17:20","AI Sovereignty: Can India Own Its AI Future?","Speaker session","aud"],
+[2,"17:30","18:30","Net-Zero Republic: India’s Blueprint for Sustainable Prosperity","Panel 2","aud"],
+[2,"18:30","19:00","Prizes & Valedictory","Closing","aud"],
+[2,"19:45","22:30","Pro Night","A live musical close to the fest","oat"]].map(function(s){var d=s[0]==1?"2026-11-13":"2026-11-14";return{day:s[0],a:Date.parse(d+"T"+s[1]+":00+05:30"),b:Date.parse(d+"T"+s[2]+":00+05:30"),t1:s[1],t2:s[2],title:s[3],sub:s[4],v:s[5]}});
+
+var $=function(id){return document.getElementById(id)},svg=$("map"),mc=$("mc"),NS="http://www.w3.org/2000/svg";
+function el(n,a,p){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e}
+var RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
+var Q=new URLSearchParams(location.search);
+function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+function toast(t){var x=$("toast");x.textContent=t;x.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(function(){x.classList.remove("on")},2200)}
+function ampm(t){var h=+t.slice(0,2),m=t.slice(3);return(h%12||12)+(m=="00"?"":":"+m)+(h<12?" am":" pm")}
+
+/* ---------- graph and routing ---------- */
+function dist(a,b){return Math.hypot(a[0]-b[0],a[1]-b[1])}
+function adj(extra){var A={};function add(a,b){var w=dist(N[a]||extra[a],N[b]||extra[b]);(A[a]=A[a]||[]).push([b,w]);(A[b]=A[b]||[]).push([a,w])}E.forEach(function(e){if(!(extra.cut&&extra.cut==e))add(e[0],e[1])});(extra.links||[]).forEach(function(l){add(l[0],l[1])});return A}
+function route(from,to,extra){extra=extra||{};var A=adj(extra),D={},P={},done={},q=[from];D[from]=0;
+while(q.length){q.sort(function(a,b){return D[a]-D[b]});var u=q.shift();if(done[u])continue;done[u]=1;if(u==to)break;
+(A[u]||[]).forEach(function(e){var nd=D[u]+e[1];if(D[e[0]]===undefined||nd<D[e[0]]){D[e[0]]=nd;P[e[0]]=u;q.push(e[0])}})}
+if(D[to]===undefined)return null;var path=[to];while(path[0]!=from)path.unshift(P[path[0]]);return path}
+function pt(id,extra){return N[id]||extra[id]}
+// snap a tapped point onto the nearest walkway
+function snap(p){var best=null;E.forEach(function(e){var a=N[e[0]],b=N[e[1]],dx=b[0]-a[0],dy=b[1]-a[1],L=dx*dx+dy*dy,t=L?Math.max(0,Math.min(1,((p[0]-a[0])*dx+(p[1]-a[1])*dy)/L)):0,q=[a[0]+t*dx,a[1]+t*dy],d=dist(p,q);if(!best||d<best.d)best={d:d,q:q,e:e,t:t}});return best}
+
+/* turn the node path into spoken-style directions */
+function rdp(P,eps){if(P.length<3)return[0,P.length-1];var a=P[0],b=P[P.length-1],mx=0,ix=0;for(var i=1;i<P.length-1;i++){var d=segd(P[i],a,b);if(d>mx){mx=d;ix=i}}
+if(mx<=eps)return[0,P.length-1];var l=rdp(P.slice(0,ix+1),eps),r=rdp(P.slice(ix),eps).map(function(k){return k+ix});return l.concat(r.slice(1))}
+function segd(p,a,b){var dx=b[0]-a[0],dy=b[1]-a[1],L=dx*dx+dy*dy;if(!L)return dist(p,a);var t=Math.max(0,Math.min(1,((p[0]-a[0])*dx+(p[1]-a[1])*dy)/L));return dist(p,[a[0]+t*dx,a[1]+t*dy])}
+function dur(px){var t=Math.max(30,Math.round(px*MPX/WALK*2)*30);return t<60?"30 sec":Math.round(t/60)+" min"}
+function m(px){var v=px*MPX;return v<40?"a few steps":"about "+Math.max(10,Math.round(v/10)*10)+" m"}
+function steps(ids,pts,fromName,dest){var K=rdp(pts,14),out=[],cum=[0];for(var i=1;i<pts.length;i++)cum[i]=cum[i-1]+dist(pts[i-1],pts[i]);
+function nm(i){var n=N[ids[i]];return n&&n[2]}
+function past(a,b){var r=[];for(var i=a+1;i<b;i++){var x=nm(i);if(x&&r.indexOf(x)<0&&x!=nm(b))r.push(x)}return r.length?", past "+r.join(" and "):""}
+for(var s=0;s<K.length-1;s++){var a=K[s],b=K[s+1],len=cum[b]-cum[a],txt,ic;
+if(s==0){txt="From "+fromName+", walk "+m(len)+past(a,b)+(b<pts.length-1&&nm(b)?" to "+nm(b):"")+".";ic="start"}
+else{var p0=pts[K[s-1]],p1=pts[a],p2=pts[b],h1=Math.atan2(p1[1]-p0[1],p1[0]-p0[0]),h2=Math.atan2(p2[1]-p1[1],p2[0]-p1[0]),d=(h2-h1)*180/Math.PI;while(d>180)d-=360;while(d<-180)d+=360;
+var side=d>0?"right":"left",verb=Math.abs(d)<30?"Keep straight":Math.abs(d)<60?"Bear "+side:"Turn "+side;ic=Math.abs(d)<30?"up":side;
+txt=verb+(nm(a)?" at "+nm(a):"")+" and walk "+m(len)+past(a,b)+".";}
+out.push({t:txt,ic:ic,a:a,b:b,len:len})}
+out.push({t:"You’ve arrived at "+dest.name+". "+dest.desc,ic:"end",a:pts.length-1,b:pts.length-1,len:0});return{steps:out,len:cum[cum.length-1]}}
+var ICON={start:'<circle cx="12" cy="12" r="5" fill="currentColor"/><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/>',up:'<path d="M12 21V4M5 10l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>',left:'<path d="M18 21v-7a4 4 0 0 0-4-4H4M9 4.5L3.5 10 9 15.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>',right:'<path d="M6 21v-7a4 4 0 0 1 4-4h10M15 4.5l5.5 5.5-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>',end:'<path d="M12 22s7-7.2 7-12.5A7 7 0 0 0 5 9.5C5 14.8 12 22 12 22z" fill="currentColor"/><circle cx="12" cy="9.5" r="2.6" fill="#fff"/>'};
+
+/* ---------- map view: pan, zoom, pins ---------- */
+var view={cx:690,cy:540,w:900},K=1,pins={};
+function box(){return svg.getBoundingClientRect()}
+function apply(){var r=box();if(!r.width)return;var a=r.height/r.width,w=Math.max(220,Math.min(2600,view.w)),h=w*a;view.w=w;
+view.cx=Math.max(0,Math.min(MW,view.cx));view.cy=Math.max(0,Math.min(MH,view.cy));
+svg.setAttribute("viewBox",(view.cx-w/2)+" "+(view.cy-h/2)+" "+w+" "+h);K=w/r.width;scaleUI()}
+function scaleUI(){for(var id in pins){var p=pins[id];p.g.setAttribute("transform","translate("+p.x+" "+p.y+") scale("+K+")")}
+var me=$("me");if(me.dataset.x)me.setAttribute("transform","translate("+me.dataset.x+" "+me.dataset.y+") scale("+K+")");
+$("rc").setAttribute("stroke-width",13*K);$("rl").setAttribute("stroke-width",7*K);$("rs").setAttribute("stroke-width",7*K);$("ra").setAttribute("stroke-width",3*K);$("ra").setAttribute("stroke-dasharray",(.01*K)+" "+(16*K))}
+var tw=0;function go(t,ms){cancelAnimationFrame(tw);if(RM||ms===0){view=t;apply();return}var s={cx:view.cx,cy:view.cy,w:view.w},t0=performance.now();ms=ms||650;
+(function f(now){var k=Math.min(1,(now-t0)/ms),e=1-Math.pow(1-k,3);view={cx:s.cx+(t.cx-s.cx)*e,cy:s.cy+(t.cy-s.cy)*e,w:Math.exp(Math.log(s.w)+(Math.log(t.w)-Math.log(s.w))*e)};apply();if(k<1)tw=requestAnimationFrame(f)})(t0)}
+function fit(P,pad,minW){var r=box(),a=r.height/r.width,x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;P.forEach(function(p){x0=Math.min(x0,p[0]);y0=Math.min(y0,p[1]);x1=Math.max(x1,p[0]);y1=Math.max(y1,p[1])});
+pad=pad||90;var bot=mc.classList.contains("stepping")?document.querySelector(".stp").offsetHeight+16:0,ah=Math.max(120,r.height-bot),w=Math.max(minW||420,x1-x0+2*pad,(y1-y0+2*pad)*r.width/ah);return{cx:(x0+x1)/2,cy:(y0+y1)/2+bot/2*w/r.width,w:w}}
+var HOME=[[300,180],[1060,180],[1060,920],[300,920]];
+function toMap(cx,cy){var r=box();return[view.cx+(cx-r.left-r.width/2)*K,view.cy+(cy-r.top-r.height/2)*K]}
+function zoomAt(f,cx,cy){var p=toMap(cx,cy),r=box(),nw=Math.max(220,Math.min(2600,view.w*f)),nk=nw/r.width;view={w:nw,cx:p[0]-(cx-r.left-r.width/2)*nk,cy:p[1]-(cy-r.top-r.height/2)*nk};apply()}
+var ptr=new Map(),g0=null,dragged=false;
+svg.addEventListener("pointerdown",function(e){if(e.button>0)return;$("mh").style.display="none";cancelAnimationFrame(tw);ptr.set(e.pointerId,[e.clientX,e.clientY]);g0=gest();dragged=false;svg.classList.add("drag")});
+function gest(){var a=[...ptr.values()],s={cx:view.cx,cy:view.cy,w:view.w,n:a.length};if(a.length==1){s.x=a[0][0];s.y=a[0][1]}else if(a.length>=2){s.d=Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]);s.mx=(a[0][0]+a[1][0])/2;s.my=(a[0][1]+a[1][1])/2;s.p=toMap(s.mx,s.my)}return s}
+addEventListener("pointermove",function(e){if(!ptr.has(e.pointerId))return;ptr.set(e.pointerId,[e.clientX,e.clientY]);var a=[...ptr.values()],r=box();
+if(a.length==1&&g0.n==1){var dx=a[0][0]-g0.x,dy=a[0][1]-g0.y;if(Math.abs(dx)+Math.abs(dy)>6)dragged=true;if(dragged){view.cx=g0.cx-dx*K0();view.cy=g0.cy-dy*K0();apply()}}
+else if(a.length>=2&&g0.n>=2){dragged=true;var d=Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]),mx=(a[0][0]+a[1][0])/2,my=(a[0][1]+a[1][1])/2,nw=Math.max(220,Math.min(2600,g0.w*g0.d/d)),nk=nw/r.width;
+view={w:nw,cx:g0.p[0]-(mx-r.left-r.width/2)*nk,cy:g0.p[1]-(my-r.top-r.height/2)*nk};apply()}});
+function K0(){return g0.w/box().width}
+function up(e){if(!ptr.delete(e.pointerId))return;g0=gest();if(!ptr.size)svg.classList.remove("drag")}
+addEventListener("pointerup",up);addEventListener("pointercancel",up);
+svg.addEventListener("wheel",function(e){e.preventDefault();zoomAt(Math.exp(e.deltaY*(e.deltaMode?.05:.0016)),e.clientX,e.clientY)},{passive:false});
+svg.addEventListener("dblclick",function(e){e.preventDefault();zoomAt(.5,e.clientX,e.clientY)});
+svg.addEventListener("click",function(e){if(dragged)return;if(mc.classList.contains("picking")){setCustom(toMap(e.clientX,e.clientY));return}});
+$("zi").onclick=function(){var r=box();zoomAt(.6,r.left+r.width/2,r.top+r.height/2)};$("zo").onclick=function(){var r=box();zoomAt(1.6,r.left+r.width/2,r.top+r.height/2)};
+$("zf").onclick=function(){go(cur.pts?fit(cur.pts):fit(HOME,10))};
+addEventListener("resize",apply);
+
+V.forEach(function(v){var o=VB[v[0]],n=N[o.node],g=el("g",{class:"pin"+(o.es?" es":""),tabindex:"0",role:"button","aria-label":"Directions to "+o.name},$("pins"));
+el("circle",{class:"ring",r:18},g);var c=el("circle",{class:"pc",r:o.es?13:18,fill:o.es?"#679cbc":o.id=="gate"?"#c11720":"#0c3249",stroke:"#fff","stroke-width":3},g);
+var t=el("text",{},g);t.textContent=o.no;
+var tip=el("g",{class:"tip",transform:"translate("+(o.es?18:24)+" -14)"},g),tr=el("rect",{rx:4,height:28,y:0},tip),tt=el("text",{x:10,y:19},tip);tt.textContent=o.name;
+pins[o.id]={g:g,x:n[0],y:n[1],tr:tr,tt:tt};
+g.addEventListener("click",function(e){if(dragged||mc.classList.contains("picking"))return;e.stopPropagation();setTo(o.id,true)});
+g.addEventListener("keydown",function(e){if(e.key=="Enter"||e.key==" "){e.preventDefault();setTo(o.id,true)}})});
+function sizeTips(){for(var id in pins){var p=pins[id];try{p.tr.setAttribute("width",p.tt.getComputedTextLength()+20)}catch(e){}}}
+
+/* ---------- selects, state ---------- */
+var cur={from:"gate",to:null,custom:null,pts:null,st:null,step:-1};
+function opts(sel,withCustom){var h=withCustom?'<option value="me">My spot on the map</option>':"";h+='<optgroup label="Drishti venues">';V.forEach(function(v,i){if(i==8)h+='</optgroup><optgroup label="Essentials">';h+='<option value="'+v[0]+'">'+(/^\d$/.test(v[1])?v[1]+". ":"")+v[2]+"</option>"});sel.innerHTML=h+"</optgroup>"}
+opts($("fr"),false);opts($("to"),false);$("to").insertAdjacentHTML("afterbegin",'<option value="" disabled>Choose a place or session</option>');$("to").value="";
+function fromSel(){var has=!!$("fr").querySelector('[value="me"]');if(cur.custom&&!has)$("fr").insertAdjacentHTML("afterbegin",'<option value="me">My spot on the map</option>');if(!cur.custom&&has)$("fr").querySelector('[value="me"]').remove();$("fr").value=cur.custom?"me":cur.from}
+$("fr").onchange=function(){if(this.value!="me"){cur.custom=null;cur.from=this.value;ls("nav-from",cur.from);meHide()}msg();draw(true)};
+$("to").onchange=function(){setTo(this.value,true)};
+$("sw").onclick=function(){if(!cur.to)return;var f=cur.custom?null:cur.from;cur.from=cur.to;cur.custom=null;meHide();if(f){cur.to=f}else{cur.to=null}fromSel();$("to").value=cur.to||"";draw(true)};
+function setTo(id,scroll){if(!VB[id])return;cur.to=id;$("to").value=id;msg();draw(true);if(scroll&&matchMedia("(max-width:900px)").matches&&mc.getBoundingClientRect().top<0)mc.scrollIntoView({behavior:RM?"auto":"smooth"})}
+function msg(h){var x=$("msg");x.innerHTML=h||"";x.classList.toggle("on",!!h)}
+function meShow(p){var me=$("me");me.dataset.x=p[0];me.dataset.y=p[1];me.style.display="";scaleUI()}
+function meHide(){var me=$("me");delete me.dataset.x;me.style.display="none"}
+function setCustom(p){mc.classList.remove("picking");svg.classList.remove("pick");var s=snap(p);cur.custom={p:p,s:s};meShow(p);fromSel();msg();
+if(cur.to)draw(true);else{msg("Got it. Now choose where you’re going, or tap a numbered pin.");go(fit([p],200,520))}}
+$("tp").onclick=function(){mc.classList.add("picking");svg.classList.add("pick");if(matchMedia("(max-width:900px)").matches)mc.scrollIntoView({behavior:RM?"auto":"smooth"})};
+$("pkx").onclick=function(){mc.classList.remove("picking");svg.classList.remove("pick")};
+
+/* ---------- draw a route ---------- */
+var anim=0,march=0;
+function draw(animate){stopSteps();var dest=VB[cur.to];document.querySelectorAll(".pin").forEach(function(g){g.classList.remove("to","fr")});
+if(!dest){clearRoute();return}pins[dest.id].g.classList.add("to");
+var extra={},start,fromName,pre=[];
+if(cur.custom){var s=cur.custom.s,e=s.e;extra.me=s.q;extra.cut=e;extra.links=[["me",e[0]],["me",e[1]]];start="me";fromName="your spot";pre=dist(cur.custom.p,s.q)>8?[cur.custom.p]:[]}
+else{var f=VB[cur.from];start=f.node;fromName=f.name;pins[f.id].g.classList.add("fr")}
+var ids=route(start,dest.node,extra);if(!ids){clearRoute();return}
+var pts=pre.concat(ids.map(function(id){return pt(id,extra)})),idsP=(pre.length?["_tap"]:[]).concat(ids);
+if(start==dest.node){clearRoute();msg("You’re already at "+dest.name+". "+dest.desc);pins[dest.id].g.classList.add("to");go(fit([pt(dest.node,{})],200,560));return}
+var R=steps(idsP,pts,fromName,dest);cur.pts=pts;cur.st=R.steps;
+var d="M"+pts.map(function(p){return p[0].toFixed(1)+" "+p[1].toFixed(1)}).join("L");["rc","rl","ra"].forEach(function(i){$(i).setAttribute("d",d)});$("rs").setAttribute("d","");
+var mins=Math.max(1,Math.round(R.len*MPX/WALK));$("rmin").textContent=mins+" min";$("rdist").textContent="walk · about "+Math.round(R.len*MPX/10)*10+" m to "+dest.name;
+var t=now(),ses=S.filter(function(x){return x.v==dest.id&&x.b>t})[0];$("rdsc").innerHTML=dest.desc+(ses?" <b>"+(ses.a<=t?"On now":"Next here")+":</b> "+ses.title+", "+(ses.day==1?"Fri":"Sat")+" "+ampm(ses.t1)+".":"");
+$("st").innerHTML=R.steps.map(function(s,i){return'<li data-i="'+i+'"><svg viewBox="0 0 24 24">'+ICON[s.ic]+'</svg>'+s.t+(s.len*MPX>=40?'<small>'+dur(s.len)+'</small>':'')+'</li>'}).join("");
+$("st").querySelectorAll("li").forEach(function(li){li.onclick=function(){startSteps(+li.dataset.i)}});
+$("rr").classList.add("on");
+var u=new URL(location.href);u.search="";u.searchParams.set("to",dest.id);if(!cur.custom)u.searchParams.set("from",cur.from);history.replaceState(null,"",u.pathname+u.search);
+go(fit(pts));drawOn(animate)}
+function clearRoute(){["rc","rl","ra","rs"].forEach(function(i){$(i).setAttribute("d","")});cur.pts=cur.st=null;$("rr").classList.remove("on");cancelAnimationFrame(march)}
+function drawOn(animate){cancelAnimationFrame(anim);cancelAnimationFrame(march);var L=$("rl").getTotalLength(),t0=performance.now(),ms=RM||!animate?0:Math.min(1600,500+L*1.2);
+["rc","rl"].forEach(function(i){$(i).style.strokeDasharray=L+" "+L});$("ra").style.opacity=0;
+(function f(now){var k=ms?Math.min(1,(now-t0)/ms):1,e=1-Math.pow(1-k,2);["rc","rl"].forEach(function(i){$(i).style.strokeDashoffset=L*(1-e)});
+if(k<1)anim=requestAnimationFrame(f);else{["rc","rl"].forEach(function(i){$(i).style.strokeDasharray="";$(i).style.strokeDashoffset=""});$("ra").style.opacity=1;if(!RM)marchOn()}})(t0)}
+function marchOn(){var o=0,t=performance.now();(function f(now){o-=(now-t)*.03*K;t=now;$("ra").setAttribute("stroke-dashoffset",o);march=requestAnimationFrame(f)})(t)}
+
+/* ---------- step by step ---------- */
+function startSteps(i){if(!cur.st)return;mc.classList.add("stepping");cur.step=i;showStep();if(matchMedia("(max-width:900px)").matches&&mc.getBoundingClientRect().top<0)mc.scrollIntoView({behavior:RM?"auto":"smooth"})}
+function stopSteps(){mc.classList.remove("stepping");cur.step=-1;$("rs").setAttribute("d","");document.querySelectorAll("#st li").forEach(function(l){l.classList.remove("on")})}
+function showStep(){var s=cur.st[cur.step],P=cur.pts.slice(s.a,s.b+1);$("sn").textContent="Step "+(cur.step+1)+" of "+cur.st.length;$("stx").textContent=s.t;
+$("sp").disabled=cur.step==0;$("sx").disabled=cur.step==cur.st.length-1;
+$("rs").setAttribute("d",P.length>1?"M"+P.map(function(p){return p[0]+" "+p[1]}).join("L"):"");
+document.querySelectorAll("#st li").forEach(function(l,i){l.classList.toggle("on",i==cur.step)});
+go(fit(P.length>1?P:[P[0]],110,P.length>1?380:520))}
+$("sp").onclick=function(){if(cur.step>0){cur.step--;showStep()}};$("sx").onclick=function(){if(cur.step<cur.st.length-1){cur.step++;showStep()}};
+$("sc").onclick=function(){stopSteps();go(fit(cur.pts))};$("wk").onclick=function(){startSteps(0)};
+addEventListener("keydown",function(e){if(!mc.classList.contains("stepping")||/SELECT|INPUT/.test(e.target.tagName))return;if(e.key=="ArrowRight")$("sx").click();if(e.key=="ArrowLeft")$("sp").click();if(e.key=="Escape")$("sc").click()});
+$("sh").onclick=function(){var u=location.origin+location.pathname+location.search,t="Walking route to "+VB[cur.to].name+" · Drishti 2026";
+if(navigator.share)navigator.share({title:t,url:u}).catch(function(){});else if(navigator.clipboard)navigator.clipboard.writeText(u).then(function(){toast("Link copied")},function(){toast(u)});else toast(u)};
+
+/* ---------- location ---------- */
+$("gl").onclick=function(){if(!navigator.geolocation){msg("Your browser can’t share its location. Pick the nearest place above, or tap the map where you are.");return}
+msg("Finding you…");navigator.geolocation.getCurrentPosition(function(p){var c=p.coords,R=6371,toR=Math.PI/180,dl=(c.latitude-CAMPUS[0])*toR,dn=(c.longitude-CAMPUS[1])*toR,
+h=Math.sin(dl/2)*Math.sin(dl/2)+Math.cos(CAMPUS[0]*toR)*Math.cos(c.latitude*toR)*Math.sin(dn/2)*Math.sin(dn/2),km=2*R*Math.asin(Math.sqrt(h));
+if(km>.9){cur.custom=null;cur.from="gate";meHide();fromSel();if(cur.to)draw(true);
+msg("You’re about "+(km<10?km.toFixed(1):Math.round(km))+" km from IIM Bangalore. <a href=\"https://www.google.com/maps/dir/?api=1&destination=IIM+Bangalore+Main+Gate,+Bannerghatta+Road,+Bengaluru\" target=\"_blank\" rel=\"noopener\">Get directions to the Main Gate ↗</a> Your walk below starts there.")}
+else{msg("You’re on campus. The campus map isn’t to scale, so GPS can’t place you on it exactly: tap the map where you are, or pick the nearest place above.");$("tp").click()}},
+function(){msg("We couldn’t get your location. Pick the nearest place above, or tap the map where you are.")},{enableHighAccuracy:true,timeout:12000,maximumAge:60000})};
+
+/* ---------- live now / next ---------- */
+function now(){var q=Q.get("now");return q?Date.parse(q+(q.length<=16?":00+05:30":"")):Date.now()}
+function live(){var t=now(),on=S.filter(function(s){return s.a<=t&&t<s.b}),nx=S.filter(function(s){return s.a>t})[0],h="";
+function line(s){return'<span class="mt">'+VB[s.v].name+" · "+(s.day==1?"Fri 13 Nov":"Sat 14 Nov")+" · "+ampm(s.t1)+"</span>"}
+function btn(s){return'<button type="button" class="b" data-go="'+s.v+'">Take me there →</button>'}
+if(on.length){var s=on[0];h='<div class="lab">Happening now</div><h3>'+s.title+"</h3>"+line(s)+"<br>"+btn(s)+(nx?'<div class="nx">Up next at '+ampm(nx.t1)+": <b>"+nx.title+"</b> · "+VB[nx.v].name+"</div>":"")}
+else if(nx){var dd=Math.ceil((nx.a-t)/864e5),soon=nx.a-t<36e5*12;h='<div class="lab">'+(soon?"Up next":nx===S[0]?"Drishti starts in "+dd+" day"+(dd==1?"":"s"):"Up next")+"</div><h3>"+nx.title+"</h3>"+line(nx)+"<br>"+btn(nx)}
+else h='<div class="lab">Drishti 2026</div><h3>That’s a wrap. Thank you for coming.</h3><span class="mt">You can still use the map to find your way around campus.</span>';
+$("lv").innerHTML=h;$("lv").querySelectorAll("[data-go]").forEach(function(b){b.onclick=function(){setTo(b.dataset.go,true)}});listS()}
+
+/* ---------- lists ---------- */
+var day=now()>=Date.parse("2026-11-14T00:00:00+05:30")?2:1;
+function listS(){var t=now();$("dy").innerHTML=[1,2].map(function(d){return'<button type="button" aria-pressed="'+(d==day)+'" data-d="'+d+'">Day '+d+" · "+(d==1?"Fri 13":"Sat 14")+"</button>"}).join("");
+$("dy").querySelectorAll("button").forEach(function(b){b.onclick=function(){day=+b.dataset.d;listS()}});
+var nx=S.filter(function(s){return s.a>t})[0];
+$("sl").innerHTML=S.filter(function(s){return s.day==day}).map(function(s){var v=VB[s.v],b=s.a<=t&&t<s.b?'<span class="bdg">Now</span>':s===nx?'<span class="bdg n">Next</span>':"";
+return'<li><button type="button" data-go="'+s.v+'"><span class="tm">'+ampm(s.t1).toUpperCase()+'</span><span class="tt">'+s.title+b+"<small>"+v.no+". "+v.name+'</small></span><span class="go" aria-hidden="true">→</span></button></li>'}).join("");
+$("sl").querySelectorAll("[data-go]").forEach(function(b){b.onclick=function(){setTo(b.dataset.go,true)}})}
+$("pl").innerHTML=V.map(function(v,i){var o=VB[v[0]],n=S.filter(function(s){return s.v==o.id}).length;
+return(i==8?'<li class="eh lab" style="border:0">Essentials</li>':"")+'<li><button type="button" data-go="'+o.id+'"><span class="nb'+(o.id=="gate"?" r":o.es?" e":"")+'">'+o.no+'</span><span class="tt">'+o.name+"<small>"+o.desc+(n?" "+n+" session"+(n>1?"s":"")+" here.":"")+'</small></span><span class="go" aria-hidden="true">→</span></button></li>'}).join("");
+$("pl").querySelectorAll("[data-go]").forEach(function(b){b.onclick=function(){setTo(b.dataset.go,true)}});
+function tab(p){$("tbs").setAttribute("aria-selected",!p);$("tbp").setAttribute("aria-selected",p);$("pvs").hidden=p;$("pvp").hidden=!p}
+$("tbs").onclick=function(){tab(false)};$("tbp").onclick=function(){tab(true)};
+
+/* ---------- QR signposts ---------- */
+if(Q.has("signs")){document.body.classList.add("sg");var base=location.origin+location.pathname;
+$("sgg").innerHTML=V.map(function(v){var o=VB[v[0]];return'<div class="sign"><span class="lg">DRISHTI<i>.</i>26</span><span class="n'+(o.id=="gate"?" r":"")+'">'+o.no+'</span><h2>You are at '+o.name+'</h2><p>Scan to find your way to any session.</p><div class="qr" data-u="'+base+"?from="+o.id+'"></div></div>'}).join("");
+var sc=document.createElement("script");sc.src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js";sc.onload=function(){document.querySelectorAll(".qr").forEach(function(q){new QRCode(q,{text:q.dataset.u,width:360,height:360,colorDark:"#0c3249",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.M})})};document.head.appendChild(sc);return}
+
+/* ---------- start ---------- */
+var f0=Q.get("from")||ls("nav-from");if(VB[f0])cur.from=f0;fromSel();
+live();setInterval(live,60000);apply();go(fit(HOME,10),0);
+(document.fonts&&document.fonts.ready||Promise.resolve()).then(sizeTips);
+if(Q.get("from")&&VB[Q.get("from")]&&!Q.get("to"))msg("You’re at "+VB[cur.from].name+". Where to? Pick a session below or tap a numbered pin.");
+if(VB[Q.get("to")])setTo(Q.get("to"),false)})();
+</script>
+</body></html>
