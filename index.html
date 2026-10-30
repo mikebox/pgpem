@@ -23,7 +23,8 @@ body{margin:0;min-height:100vh;background:var(--cream);color:var(--navy);font:16
 a{color:inherit;text-decoration:none}
 .w{max-width:1100px;margin:0 auto;padding:0 16px;width:100%}
 header{background:var(--navy);color:var(--cream)}
-header .w{display:flex;align-items:center;padding-top:10px;padding-bottom:10px}
+header .w{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:10px;padding-bottom:10px}
+.hl{font-size:14px;font-weight:600;color:var(--cream);border:1.5px solid rgba(255,241,214,.5);padding:8px 16px;border-radius:999px;transition:background .2s,color .2s,border-color .2s}.hl:hover,.hl:focus-visible{background:var(--cream);color:var(--navy);border-color:var(--cream)}
 .ilg{display:inline-block;background:#fff;padding:8px 12px;border-radius:6px}.ilg img{display:block;height:44px;width:auto}
 main{flex:1;padding:72px 0 96px}
 .ey{font-size:12px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;color:var(--red);display:flex;align-items:center;gap:12px}
@@ -45,12 +46,20 @@ h1 em{font-family:'Instrument Serif',Georgia,serif;font-weight:400;color:var(--r
 .card p{margin:12px 0 0;font-size:15px;opacity:.9}
 .go{margin-top:28px;font-weight:600;font-size:14px;display:inline-flex;gap:8px;align-items:center}
 .go span{transition:transform .25s}.card:hover .go span{transform:translateX(4px)}
+.merch{background:var(--navy);color:var(--cream);padding:56px 0}
+.merch .w{display:flex;align-items:center;justify-content:space-between;gap:24px 40px;flex-wrap:wrap}
+.merch .ey{color:var(--sky)}
+.merch h2{margin:12px 0 0;font-weight:700;letter-spacing:-.03em;line-height:1.05;font-size:clamp(28px,4vw,44px)}
+.merch h2 em{font-family:'Instrument Serif',Georgia,serif;font-weight:400;color:var(--sky)}
+.merch p{margin:10px 0 0;color:#b4cada;max-width:520px}
+.btn{display:inline-flex;gap:8px;align-items:center;background:var(--red);color:var(--cream);font-weight:600;padding:14px 26px;border-radius:999px;transition:transform .25s,background .25s}
+.btn:hover,.btn:focus-visible{transform:translateY(-2px);background:#a3121a}.btn:focus-visible{outline:3px solid var(--sky);outline-offset:3px}
 footer{background:#08222f;color:#b4cada;padding:28px 0;font-size:14px}
-@media(prefers-reduced-motion:reduce){.card,.go span{transition:none}}
+@media(prefers-reduced-motion:reduce){.card,.go span,.btn{transition:none}}
 </style>
 </head>
 <body>
-<header><div class="w"><div class="ilg"><img src="images/iimb-pgpem.png" alt="IIM Bangalore · PGPEM" width="120" height="44"></div></div></header>
+<header><div class="w"><div class="ilg"><img src="images/iimb-pgpem.png" alt="IIM Bangalore · PGPEM" width="120" height="44"></div><a class="hl" href="https://merch.pgpem.in/" target="_blank" rel="noopener">Merch ↗</a></div></header>
 <main>
   <div class="w">
     <div class="ey">Events 2026</div>
@@ -76,6 +85,14 @@ footer{background:#08222f;color:#b4cada;padding:28px 0;font-size:14px}
     </div>
   </div>
 </main>
+<section class="merch" aria-labelledby="merch-h"><div class="w">
+  <div>
+    <div class="ey">Merchandise</div>
+    <h2 id="merch-h">Wear the <em>PGPEM</em> story</h2>
+    <p>Official PGPEM, IIM Bangalore merchandise, available online.</p>
+  </div>
+  <a class="btn" href="https://merch.pgpem.in/" target="_blank" rel="noopener">Shop merch <span aria-hidden="true">↗</span></a>
+</div></section>
 <footer><div class="w">PGPEM · Indian Institute of Management Bangalore</div></footer>
 </body>
 </html>
