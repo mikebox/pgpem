@@ -17,7 +17,7 @@ nav .w{display:flex;justify-content:space-between;align-items:center;height:62px
 .b{display:inline-flex;gap:8px;align-items:center;background:var(--red);color:var(--cream)!important;font-weight:600;padding:14px 26px;border-radius:999px;transition:.25s;border:1px solid var(--red)}
 .b:hover{transform:translateY(-2px);background:var(--red2);box-shadow:0 14px 30px -12px rgba(193,23,32,.7)}.b.sm{padding:8px 18px;font-size:14px}
 .b.g{background:none;border:1.5px solid var(--navy);color:var(--navy)!important}.b.g:hover{background:var(--navy);color:var(--cream)!important;box-shadow:none}
-@media(max-width:700px){.nl a:not(.b){display:none}}
+@media(max-width:700px){.nl a:not(.b){display:none}}.nl a.mr{display:inline}@media(max-width:700px){.nl{gap:18px}}
 .ey{font-family:Archivo,system-ui,sans-serif;font-size:12px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;color:var(--red);display:flex;align-items:center;gap:12px}
 .d .ey,.cta .ey{color:var(--sky)}
 .back{display:inline-block;font-size:14px;font-weight:600;margin-bottom:22px;color:var(--navy);border-bottom:1.5px solid currentColor}.back:hover{color:var(--red)}
